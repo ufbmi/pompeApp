@@ -1,0 +1,75 @@
+PODS:
+  - ActionSheetPicker-3.0 (2.2.0)
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - AWSCore (2.4.16)
+  - AWSLambda (2.4.16):
+    - AWSCore (= 2.4.16)
+  - AWSSNS (2.4.16):
+    - AWSCore (= 2.4.16)
+  - CorePlot (2.2)
+  - DLRadioButton (1.4.9)
+  - OAuthSwift (1.1.0)
+  - SwiftCharts (0.5.1)
+  - SwiftyJSON (3.1.4)
+
+DEPENDENCIES:
+  - ActionSheetPicker-3.0 (~> 2.2.0)
+  - AFNetworking (~> 2.5)
+  - AWSCore (~> 2.4.7)
+  - AWSLambda
+  - AWSSNS
+  - CorePlot (~> 2.1)
+  - DLRadioButton (~> 1.4)
+  - OAuthSwift (~> 1.1.0)
+  - SwiftCharts (from `https://github.com/i-schuetz/SwiftCharts.git`)
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+
+EXTERNAL SOURCES:
+  SwiftCharts:
+    :git: https://github.com/i-schuetz/SwiftCharts.git
+  SwiftyJSON:
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  SwiftCharts:
+    :commit: 79cc20a1d87dfe7d549b6c8aee7a9bc2c1b34572
+    :git: https://github.com/i-schuetz/SwiftCharts.git
+  SwiftyJSON:
+    :commit: adf34cfb4c9f2ff4e3c420c6d9fb1e2eaf3b3791
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  AWSCore: 7c3c129991e6387bcbad7132bc3661e7135754db
+  AWSLambda: 87ec46e9fc53409dcbe28b70a6ac86a27b87275b
+  AWSSNS: f7eb9a5c19410e2a0164febc2cd665831c1cd26c
+  CorePlot: cbe0c6e14220705e32e06a89c7d6a5a908b7d7d8
+  DLRadioButton: 7bb8a6e3768b572469ace553391ab4d2af6f9c19
+  OAuthSwift: 7ec2c62274f6bdc30b1ba3b799c39a6fdcaea0e5
+  SwiftCharts: 5c711f225e65bb967bf9ac952888670d461b80af
+  SwiftyJSON: 05cf0e98a950e2ba343735264f5a96b81e755d00
+
+PODFILE CHECKSUM: 36107a4b2c67a917e384262c1bab79e4a932b89c
+
+COCOAPODS: 1.0.1
