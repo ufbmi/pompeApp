@@ -28,12 +28,7 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         } else if userDefaults.integer(forKey: "device") == 1 {
             addChildView("fitBitLog", titleOfChildren: "FitBit Activity Log", iconName: "walker-or-runner-sportive-stick-man", storyBoard: "Fitbit")
         }
-        addChildView("proSurvey", titleOfChildren: "PRO Survey", iconName: "iconmonstr-help-6-96", storyBoard: "Main")
-        addChildView("ladderSurvey", titleOfChildren: "Ladder Survey", iconName: "iconmonstr-help-6-96", storyBoard: "Main")
-        addChildView("MedsViewController", titleOfChildren: "Medicine Log", iconName: "pill", storyBoard: "Profile")
-        addChildView("glucoseViewController", titleOfChildren:"Glucose Log", iconName: "iconmonstr-chart-4-240-2", storyBoard: "Main")
         addChildView("profileViewController", titleOfChildren: "Account", iconName: "iconmonstr-user-19-120", storyBoard: "Profile")
-        addChildView("messageView", titleOfChildren: "Messages", iconName: "email", storyBoard: "Messages")
         addChildView("deviceSelector", titleOfChildren: "Device", iconName: "checkmark", storyBoard: "Main")
         showFirstChild()
         

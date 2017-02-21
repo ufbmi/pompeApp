@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        registerForPushNotifications(application)
         // Override point for customization after application launch.
         let credentialsProvider = AWSCognitoCredentialsProvider(
             regionType: AWSRegionType.usEast1,
@@ -51,39 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 appDelegate.window?.rootViewController = initialView
                 appDelegate.window?.makeKeyAndVisible()            }
         }
-        
-        // Sets up Mobile Push Notification
-        let readAction = UIMutableUserNotificationAction()
-        readAction.identifier = "READ_IDENTIFIER"
-        readAction.title = "Read"
-        readAction.activationMode = UIUserNotificationActivationMode.foreground
-        readAction.isDestructive = false
-        readAction.isAuthenticationRequired = true
-        
-        let deleteAction = UIMutableUserNotificationAction()
-        deleteAction.identifier = "DELETE_IDENTIFIER"
-        deleteAction.title = "Delete"
-        deleteAction.activationMode = UIUserNotificationActivationMode.foreground
-        deleteAction.isDestructive = true
-        deleteAction.isAuthenticationRequired = true
-        
-        let ignoreAction = UIMutableUserNotificationAction()
-        ignoreAction.identifier = "IGNORE_IDENTIFIER"
-        ignoreAction.title = "Ignore"
-        ignoreAction.activationMode = UIUserNotificationActivationMode.foreground
-        ignoreAction.isDestructive = false
-        ignoreAction.isAuthenticationRequired = false
-        
-        let messageCategory = UIMutableUserNotificationCategory()
-        messageCategory.identifier = "MESSAGE_CATEGORY"
-        messageCategory.setActions([readAction, deleteAction], for: UIUserNotificationActionContext.minimal)
-        messageCategory.setActions([readAction, deleteAction, ignoreAction], for: UIUserNotificationActionContext.default)
-        
-        let notificationSettings = UIUserNotificationSettings(types: [UIUserNotificationType.badge, UIUserNotificationType.sound, UIUserNotificationType.alert], categories: (NSSet(array: [messageCategory])) as? Set<UIUserNotificationCategory>)
-        
-        UIApplication.shared.registerForRemoteNotifications()
-        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
-        
         
         
         return true
@@ -124,83 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let dateComponents = (Calendar.current as NSCalendar).components(calendarUnit, from: date)
         return dateComponents
     }
-    
-    //PUSH NOTIFICATIONS
-    
-    func registerForPushNotifications(_ application: UIApplication) {
-        let notificationSettings = UIUserNotificationSettings(
-            types: [.badge, .sound, .alert], categories: nil)
-        application.registerUserNotificationSettings(notificationSettings)
-    }
-    
-    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
-        if notificationSettings.types != UIUserNotificationType() {
-            application.registerForRemoteNotifications()
-        }
-    }
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let deviceTokenString = "\(deviceToken)"
-            .trimmingCharacters(in: CharacterSet(charactersIn:"<>"))
-            .replacingOccurrences(of: " ", with: "")
-        UserDefaults.standard.set(deviceTokenString, forKey: "deviceToken")
-        let sns = AWSSNS.default()
-        let request = AWSSNSCreatePlatformEndpointInput()
-        request?.token = deviceTokenString
-        request?.platformApplicationArn = SNSPlatformApplicationArn
-        sns.createPlatformEndpoint(request!).continue(with: AWSExecutor.mainThread(), with: { (task: AWSTask!) -> AnyObject! in
-            if task.error != nil {
-                print("ERROR: \(task.error)")
-            } else {
-                let createEndpointResponse = task.result! as AWSSNSCreateEndpointResponse
-               // print("endpointArn: \(createEndpointResponse.endpointArn)")
-                self.userDefaults.set(createEndpointResponse.endpointArn, forKey: "endpointArn")
-            }
-            return nil
-        })
-    }
-    
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("Failed to register:", error)
-    }
-    
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        var remembered = false
-        if userDefaults.value(forKey: "email") != nil{
-            remembered = true
-        }
-        if let aps = userInfo["aps"] as? NSDictionary {
-            if let alert = aps["alert"] as? NSString {
-                let MsgReceived = UIAlertController(title: "New Message", message: alert as String, preferredStyle: .alert)
-                let view = UIAlertAction(title: "View", style: .default, handler: { (action: UIAlertAction) -> Void in
-                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
-                    if(remembered) {
-                        let messagesStoryboard: UIStoryboard = UIStoryboard(name: "Messages", bundle: nil)
-                        let initialView = messagesStoryboard.instantiateViewController(withIdentifier: "messageView")
-                        appDelegate.window?.rootViewController = initialView
-                        appDelegate.window?.makeKeyAndVisible()
-                    }
-                    else {
-                        let messagesStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                        let initialView = messagesStoryboard.instantiateViewController(withIdentifier: "loginView")
-                        appDelegate.window?.rootViewController = initialView
-                        appDelegate.window?.makeKeyAndVisible()
-                    }
-                })
-                let ignore = UIAlertAction(title: "Ignore", style: .default, handler: { (action: UIAlertAction) -> Void in
-                })
-                MsgReceived.addAction(view)
-                MsgReceived.addAction(ignore)
-                var hostVC = self.window?.rootViewController
-                while let next = hostVC?.presentedViewController {
-                    hostVC = next
-                }
-                hostVC?.present(MsgReceived, animated: true, completion: nil)
-            }
-        }
-    }
+   
 }
 
 

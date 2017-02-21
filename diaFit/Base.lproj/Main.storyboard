@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="nJ7-3N-Dg6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="nJ7-3N-Dg6">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,594 +18,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nv0-Yb-MJX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7" y="1026"/>
-        </scene>
-        <!--Survey View Controller-->
-        <scene sceneID="fMZ-uL-mAL">
-            <objects>
-                <viewController storyboardIdentifier="proSurvey" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZlH-S8-t73" customClass="SurveyViewController" customModule="diaFit" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1BF-Vr-tOI"/>
-                        <viewControllerLayoutGuide type="bottom" id="L3Z-HG-C6S"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="asp-5m-QRG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guN-Po-cun">
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphone6_background" translatesAutoresizingMaskIntoConstraints="NO" id="WZe-gn-An1"/>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdo-sl-4em" customClass="DLRadioButton">
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <state key="normal" title="4">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="n04-tA-SFt"/>
-                                            <outletCollection property="otherButtons" destination="xU8-ml-4G0" id="t0L-Xn-cdV"/>
-                                            <outletCollection property="otherButtons" destination="nKq-cJ-s4u" id="AHC-ih-dSf"/>
-                                            <outletCollection property="otherButtons" destination="Y38-cg-ZHM" id="M3X-gd-eHl"/>
-                                            <outletCollection property="otherButtons" destination="a1U-Zv-ytC" id="iOy-Jf-K4p"/>
-                                            <outletCollection property="otherButtons" destination="RC2-Te-lzc" id="sIr-70-8O8"/>
-                                            <outletCollection property="otherButtons" destination="eoY-CO-B7F" id="7fN-eh-JLu"/>
-                                            <outletCollection property="otherButtons" destination="5oa-EF-kI6" id="jfo-8F-8pe"/>
-                                            <outletCollection property="otherButtons" destination="VyV-MO-FA7" id="WhU-ah-daz"/>
-                                            <outletCollection property="otherButtons" destination="PPh-1F-ugj" id="MgN-sw-rsy"/>
-                                            <outletCollection property="otherButtons" destination="PLC-DG-eNP" id="ggo-rv-dJE"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xU8-ml-4G0" customClass="DLRadioButton">
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <state key="normal" title="3">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="2a5-p6-PDR"/>
-                                            <outletCollection property="otherButtons" destination="gdo-sl-4em" id="Kkf-EK-wxq"/>
-                                            <outletCollection property="otherButtons" destination="nKq-cJ-s4u" id="CTb-tO-fcM"/>
-                                            <outletCollection property="otherButtons" destination="Y38-cg-ZHM" id="zvq-lt-fG4"/>
-                                            <outletCollection property="otherButtons" destination="a1U-Zv-ytC" id="KQO-pJ-mE2"/>
-                                            <outletCollection property="otherButtons" destination="RC2-Te-lzc" id="AIo-fo-aMs"/>
-                                            <outletCollection property="otherButtons" destination="eoY-CO-B7F" id="ZmX-LX-IWo"/>
-                                            <outletCollection property="otherButtons" destination="5oa-EF-kI6" id="AlX-lx-13G"/>
-                                            <outletCollection property="otherButtons" destination="VyV-MO-FA7" id="aux-Jn-DPX"/>
-                                            <outletCollection property="otherButtons" destination="PPh-1F-ugj" id="VCD-SJ-wZm"/>
-                                            <outletCollection property="otherButtons" destination="PLC-DG-eNP" id="VwT-e2-hQB"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nKq-cJ-s4u" customClass="DLRadioButton">
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <state key="normal" title="2">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="ubR-MM-tSg"/>
-                                            <outletCollection property="otherButtons" destination="xU8-ml-4G0" id="6bo-39-JCD"/>
-                                            <outletCollection property="otherButtons" destination="gdo-sl-4em" id="KNS-Tz-pkL"/>
-                                            <outletCollection property="otherButtons" destination="Y38-cg-ZHM" id="G8w-et-1Ao"/>
-                                            <outletCollection property="otherButtons" destination="a1U-Zv-ytC" id="6BR-qp-UJK"/>
-                                            <outletCollection property="otherButtons" destination="RC2-Te-lzc" id="Fyv-5D-lwp"/>
-                                            <outletCollection property="otherButtons" destination="eoY-CO-B7F" id="upe-Rp-iOW"/>
-                                            <outletCollection property="otherButtons" destination="5oa-EF-kI6" id="EK7-Bp-v6P"/>
-                                            <outletCollection property="otherButtons" destination="VyV-MO-FA7" id="9f2-Yn-UKn"/>
-                                            <outletCollection property="otherButtons" destination="PPh-1F-ugj" id="w7K-X5-06Y"/>
-                                            <outletCollection property="otherButtons" destination="PLC-DG-eNP" id="9Oe-0T-LHl"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1U-Zv-ytC" customClass="DLRadioButton">
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <state key="normal" title="5">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="J93-cw-GzQ"/>
-                                            <outletCollection property="otherButtons" destination="gdo-sl-4em" id="1sv-g5-e7n"/>
-                                            <outletCollection property="otherButtons" destination="xU8-ml-4G0" id="yJZ-sz-96j"/>
-                                            <outletCollection property="otherButtons" destination="nKq-cJ-s4u" id="fJ8-Wa-cux"/>
-                                            <outletCollection property="otherButtons" destination="Y38-cg-ZHM" id="psL-Lb-gB6"/>
-                                            <outletCollection property="otherButtons" destination="RC2-Te-lzc" id="GNO-oq-n3i"/>
-                                            <outletCollection property="otherButtons" destination="eoY-CO-B7F" id="ehy-5r-VdJ"/>
-                                            <outletCollection property="otherButtons" destination="5oa-EF-kI6" id="VXH-aR-McT"/>
-                                            <outletCollection property="otherButtons" destination="VyV-MO-FA7" id="wCg-S5-2Ic"/>
-                                            <outletCollection property="otherButtons" destination="PPh-1F-ugj" id="1vo-E2-YCw"/>
-                                            <outletCollection property="otherButtons" destination="PLC-DG-eNP" id="LU1-ve-s1r"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoY-CO-B7F" customClass="DLRadioButton">
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <state key="normal" title="7">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="eG4-bj-7Z1"/>
-                                            <outletCollection property="otherButtons" destination="RC2-Te-lzc" id="ciK-en-Pl6"/>
-                                            <outletCollection property="otherButtons" destination="Y38-cg-ZHM" id="0Zx-Gt-wSO"/>
-                                            <outletCollection property="otherButtons" destination="nKq-cJ-s4u" id="xCh-gu-dvQ"/>
-                                            <outletCollection property="otherButtons" destination="xU8-ml-4G0" id="R6K-Ux-Z8z"/>
-                                            <outletCollection property="otherButtons" destination="gdo-sl-4em" id="CKK-vU-kcA"/>
-                                            <outletCollection property="otherButtons" destination="a1U-Zv-ytC" id="q57-v0-dQb"/>
-                                            <outletCollection property="otherButtons" destination="5oa-EF-kI6" id="AUm-k0-5mM"/>
-                                            <outletCollection property="otherButtons" destination="VyV-MO-FA7" id="XnC-Fr-to0"/>
-                                            <outletCollection property="otherButtons" destination="PPh-1F-ugj" id="V6W-e3-oOj"/>
-                                            <outletCollection property="otherButtons" destination="PLC-DG-eNP" id="dMc-zH-M8n"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5oa-EF-kI6" customClass="DLRadioButton">
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <state key="normal" title="8">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="vvQ-Rt-Z9Q"/>
-                                            <outletCollection property="otherButtons" destination="Y38-cg-ZHM" id="k0n-Fd-zba"/>
-                                            <outletCollection property="otherButtons" destination="nKq-cJ-s4u" id="mig-xr-HJP"/>
-                                            <outletCollection property="otherButtons" destination="xU8-ml-4G0" id="Xnl-m6-q5f"/>
-                                            <outletCollection property="otherButtons" destination="gdo-sl-4em" id="VbL-q1-P6j"/>
-                                            <outletCollection property="otherButtons" destination="a1U-Zv-ytC" id="AQJ-J1-3nZ"/>
-                                            <outletCollection property="otherButtons" destination="RC2-Te-lzc" id="EjW-Pa-PWb"/>
-                                            <outletCollection property="otherButtons" destination="eoY-CO-B7F" id="Rnn-1j-cAS"/>
-                                            <outletCollection property="otherButtons" destination="VyV-MO-FA7" id="iIw-fx-5Ve"/>
-                                            <outletCollection property="otherButtons" destination="PPh-1F-ugj" id="G5d-n2-fxB"/>
-                                            <outletCollection property="otherButtons" destination="PLC-DG-eNP" id="NqN-0s-R2I"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PROQuestion" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vP-cl-fQk">
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y38-cg-ZHM" customClass="DLRadioButton">
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <state key="normal" title="1">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="4Vr-aZ-a84"/>
-                                            <outletCollection property="otherButtons" destination="nKq-cJ-s4u" id="Bfx-N6-GBg"/>
-                                            <outletCollection property="otherButtons" destination="xU8-ml-4G0" id="Q8A-2e-sS8"/>
-                                            <outletCollection property="otherButtons" destination="gdo-sl-4em" id="958-xY-mZA"/>
-                                            <outletCollection property="otherButtons" destination="a1U-Zv-ytC" id="61A-5c-uAg"/>
-                                            <outletCollection property="otherButtons" destination="RC2-Te-lzc" id="bVj-Yq-8kf"/>
-                                            <outletCollection property="otherButtons" destination="eoY-CO-B7F" id="nue-c6-oIX"/>
-                                            <outletCollection property="otherButtons" destination="5oa-EF-kI6" id="deT-Uz-RSG"/>
-                                            <outletCollection property="otherButtons" destination="VyV-MO-FA7" id="gCl-nQ-Kfw"/>
-                                            <outletCollection property="otherButtons" destination="PPh-1F-ugj" id="Iqn-4q-ogL"/>
-                                            <outletCollection property="otherButtons" destination="PLC-DG-eNP" id="9H3-Dr-UC1"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLC-DG-eNP" customClass="DLRadioButton">
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <state key="normal" title="0">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="AoX-lP-UV2"/>
-                                            <outletCollection property="otherButtons" destination="Y38-cg-ZHM" id="l3F-Y7-xsx"/>
-                                            <outletCollection property="otherButtons" destination="nKq-cJ-s4u" id="lc6-fL-nnl"/>
-                                            <outletCollection property="otherButtons" destination="xU8-ml-4G0" id="VUu-of-h9I"/>
-                                            <outletCollection property="otherButtons" destination="gdo-sl-4em" id="Ev0-gY-1CU"/>
-                                            <outletCollection property="otherButtons" destination="a1U-Zv-ytC" id="xJQ-zt-kVi"/>
-                                            <outletCollection property="otherButtons" destination="RC2-Te-lzc" id="gZU-G7-s7U"/>
-                                            <outletCollection property="otherButtons" destination="eoY-CO-B7F" id="czm-KM-55h"/>
-                                            <outletCollection property="otherButtons" destination="5oa-EF-kI6" id="EZP-Bo-KO7"/>
-                                            <outletCollection property="otherButtons" destination="VyV-MO-FA7" id="lAz-EE-Ot7"/>
-                                            <outletCollection property="otherButtons" destination="PPh-1F-ugj" id="wZ8-B5-THE"/>
-                                            <outletCollection property="otherButtons" destination="Y38-cg-ZHM" id="bbt-u2-i1Q"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instructions" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbM-OQ-1yf">
-                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
-                                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEp-0j-7Un">
-                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                        <state key="normal" title="Next">
-                                            <color key="titleColor" red="0.0290111573" green="0.045433598399999997" blue="0.61772836539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="nextButton:" destination="ZlH-S8-t73" eventType="touchUpInside" id="FeR-yI-6b2"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPh-1F-ugj" customClass="DLRadioButton">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="43" id="VfE-FB-sbK"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <state key="normal" title="10">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="r8G-gK-87H"/>
-                                            <outletCollection property="otherButtons" destination="Y38-cg-ZHM" id="eCH-hf-8Cp"/>
-                                            <outletCollection property="otherButtons" destination="nKq-cJ-s4u" id="nXB-DO-gOc"/>
-                                            <outletCollection property="otherButtons" destination="xU8-ml-4G0" id="Ayz-Pa-KW3"/>
-                                            <outletCollection property="otherButtons" destination="gdo-sl-4em" id="Yd8-8C-6KG"/>
-                                            <outletCollection property="otherButtons" destination="a1U-Zv-ytC" id="fsf-cD-21Z"/>
-                                            <outletCollection property="otherButtons" destination="RC2-Te-lzc" id="RI4-OA-E0r"/>
-                                            <outletCollection property="otherButtons" destination="eoY-CO-B7F" id="ano-ry-NpX"/>
-                                            <outletCollection property="otherButtons" destination="5oa-EF-kI6" id="bvG-dO-Kh3"/>
-                                            <outletCollection property="otherButtons" destination="VyV-MO-FA7" id="kXs-GS-0AN"/>
-                                            <outletCollection property="otherButtons" destination="PLC-DG-eNP" id="tyb-w1-SjD"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyV-MO-FA7" customClass="DLRadioButton">
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <state key="normal" title="9">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="K1D-hk-Ges"/>
-                                            <outletCollection property="otherButtons" destination="Y38-cg-ZHM" id="fTW-4r-WaL"/>
-                                            <outletCollection property="otherButtons" destination="nKq-cJ-s4u" id="4Bg-DJ-Yjz"/>
-                                            <outletCollection property="otherButtons" destination="xU8-ml-4G0" id="kXm-Nt-a2M"/>
-                                            <outletCollection property="otherButtons" destination="gdo-sl-4em" id="REI-xc-mxR"/>
-                                            <outletCollection property="otherButtons" destination="a1U-Zv-ytC" id="RjY-jA-CF7"/>
-                                            <outletCollection property="otherButtons" destination="RC2-Te-lzc" id="4mn-SI-OP8"/>
-                                            <outletCollection property="otherButtons" destination="eoY-CO-B7F" id="rQO-n9-MJo"/>
-                                            <outletCollection property="otherButtons" destination="5oa-EF-kI6" id="hAe-4O-eVD"/>
-                                            <outletCollection property="otherButtons" destination="PPh-1F-ugj" id="esp-Ux-E6y"/>
-                                            <outletCollection property="otherButtons" destination="PLC-DG-eNP" id="kD4-bh-Zp3"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RC2-Te-lzc" customClass="DLRadioButton">
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <state key="normal" title="6">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="N9M-WB-lzH"/>
-                                            <outletCollection property="otherButtons" destination="Y38-cg-ZHM" id="m4N-Go-ZfY"/>
-                                            <outletCollection property="otherButtons" destination="nKq-cJ-s4u" id="Ja7-q1-Kic"/>
-                                            <outletCollection property="otherButtons" destination="xU8-ml-4G0" id="r3S-Uc-HR5"/>
-                                            <outletCollection property="otherButtons" destination="gdo-sl-4em" id="rO8-0n-sNy"/>
-                                            <outletCollection property="otherButtons" destination="a1U-Zv-ytC" id="VR4-su-d9K"/>
-                                            <outletCollection property="otherButtons" destination="eoY-CO-B7F" id="HWD-T5-XzO"/>
-                                            <outletCollection property="otherButtons" destination="5oa-EF-kI6" id="fji-3U-miA"/>
-                                            <outletCollection property="otherButtons" destination="VyV-MO-FA7" id="uDa-CU-dEI"/>
-                                            <outletCollection property="otherButtons" destination="PPh-1F-ugj" id="t1u-nb-Crk"/>
-                                            <outletCollection property="otherButtons" destination="PLC-DG-eNP" id="xpT-K5-pDL"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="Y38-cg-ZHM" firstAttribute="top" secondItem="PLC-DG-eNP" secondAttribute="bottom" constant="13" id="1Er-G2-UdH"/>
-                                    <constraint firstItem="eoY-CO-B7F" firstAttribute="trailing" secondItem="RC2-Te-lzc" secondAttribute="trailing" id="2d1-Bl-xsm"/>
-                                    <constraint firstItem="AbM-OQ-1yf" firstAttribute="leading" secondItem="guN-Po-cun" secondAttribute="leading" constant="8" id="7ka-sZ-2jL"/>
-                                    <constraint firstItem="eoY-CO-B7F" firstAttribute="top" secondItem="RC2-Te-lzc" secondAttribute="bottom" constant="28" id="8QG-N3-7Vj"/>
-                                    <constraint firstItem="nKq-cJ-s4u" firstAttribute="leading" secondItem="Y38-cg-ZHM" secondAttribute="leading" id="8mD-31-tlt"/>
-                                    <constraint firstItem="PPh-1F-ugj" firstAttribute="top" secondItem="VyV-MO-FA7" secondAttribute="bottom" constant="22" id="BxX-5A-euM"/>
-                                    <constraint firstItem="PLC-DG-eNP" firstAttribute="top" secondItem="AbM-OQ-1yf" secondAttribute="bottom" constant="56" id="FeZ-mZ-FD2"/>
-                                    <constraint firstItem="gdo-sl-4em" firstAttribute="top" secondItem="xU8-ml-4G0" secondAttribute="bottom" constant="15" id="FyT-Pr-UXd"/>
-                                    <constraint firstItem="Y38-cg-ZHM" firstAttribute="leading" secondItem="PLC-DG-eNP" secondAttribute="leading" id="Fzu-Lq-5Vn"/>
-                                    <constraint firstAttribute="trailing" secondItem="AbM-OQ-1yf" secondAttribute="trailing" constant="8" id="HUn-ZX-9gF"/>
-                                    <constraint firstItem="gdo-sl-4em" firstAttribute="leading" secondItem="xU8-ml-4G0" secondAttribute="leading" id="HXS-mI-aiJ"/>
-                                    <constraint firstItem="a1U-Zv-ytC" firstAttribute="leading" secondItem="guN-Po-cun" secondAttribute="leading" constant="64" id="KGv-eM-BV9"/>
-                                    <constraint firstItem="xU8-ml-4G0" firstAttribute="top" secondItem="nKq-cJ-s4u" secondAttribute="bottom" constant="15" id="KcI-4y-YuI"/>
-                                    <constraint firstAttribute="trailing" secondItem="RC2-Te-lzc" secondAttribute="trailing" constant="128" id="LPW-m2-rl3"/>
-                                    <constraint firstAttribute="bottom" secondItem="WZe-gn-An1" secondAttribute="bottom" id="MAp-1v-ZYc"/>
-                                    <constraint firstItem="WZe-gn-An1" firstAttribute="top" secondItem="guN-Po-cun" secondAttribute="top" id="NNy-Ds-9Yo"/>
-                                    <constraint firstItem="RC2-Te-lzc" firstAttribute="baseline" secondItem="PLC-DG-eNP" secondAttribute="baseline" id="Ni8-cj-of3"/>
-                                    <constraint firstAttribute="trailing" secondItem="eEp-0j-7Un" secondAttribute="trailing" constant="131" id="RM7-aJ-tiy"/>
-                                    <constraint firstItem="2vP-cl-fQk" firstAttribute="leading" secondItem="guN-Po-cun" secondAttribute="leading" constant="8" id="TUc-eE-Ofo"/>
-                                    <constraint firstAttribute="trailing" secondItem="2vP-cl-fQk" secondAttribute="trailing" constant="8" id="U8N-Ex-NwK"/>
-                                    <constraint firstItem="VyV-MO-FA7" firstAttribute="leading" secondItem="5oa-EF-kI6" secondAttribute="leading" id="USH-ua-NcO"/>
-                                    <constraint firstItem="xU8-ml-4G0" firstAttribute="leading" secondItem="nKq-cJ-s4u" secondAttribute="leading" id="Z4x-GL-CgG"/>
-                                    <constraint firstItem="VyV-MO-FA7" firstAttribute="top" secondItem="5oa-EF-kI6" secondAttribute="bottom" constant="24" id="ZCn-Ui-gOK"/>
-                                    <constraint firstItem="PPh-1F-ugj" firstAttribute="baseline" secondItem="a1U-Zv-ytC" secondAttribute="baseline" id="brv-c8-4JC"/>
-                                    <constraint firstAttribute="bottom" secondItem="eEp-0j-7Un" secondAttribute="bottom" constant="20" id="dFs-7X-TO4"/>
-                                    <constraint firstAttribute="trailing" secondItem="WZe-gn-An1" secondAttribute="trailing" id="fFS-lq-Xoo"/>
-                                    <constraint firstItem="nKq-cJ-s4u" firstAttribute="top" secondItem="Y38-cg-ZHM" secondAttribute="bottom" constant="15" id="guk-1N-g14"/>
-                                    <constraint firstItem="5oa-EF-kI6" firstAttribute="top" secondItem="eoY-CO-B7F" secondAttribute="bottom" constant="22" id="mmp-dV-vn5"/>
-                                    <constraint firstItem="a1U-Zv-ytC" firstAttribute="leading" secondItem="gdo-sl-4em" secondAttribute="leading" id="pT8-HP-7V5"/>
-                                    <constraint firstItem="WZe-gn-An1" firstAttribute="leading" secondItem="guN-Po-cun" secondAttribute="leading" id="r0s-7o-1rh"/>
-                                    <constraint firstItem="PPh-1F-ugj" firstAttribute="centerX" secondItem="VyV-MO-FA7" secondAttribute="centerX" id="r2o-DZ-n4f"/>
-                                    <constraint firstAttribute="trailing" secondItem="eoY-CO-B7F" secondAttribute="trailing" constant="128" id="r4r-Pk-CIm"/>
-                                    <constraint firstAttribute="trailing" secondItem="5oa-EF-kI6" secondAttribute="trailing" constant="128" id="vVp-U1-rv8"/>
-                                    <constraint firstItem="5oa-EF-kI6" firstAttribute="leading" secondItem="eoY-CO-B7F" secondAttribute="leading" id="w9X-PY-Oc2"/>
-                                    <constraint firstItem="AbM-OQ-1yf" firstAttribute="top" secondItem="2vP-cl-fQk" secondAttribute="bottom" constant="131" id="xuA-Il-FBP"/>
-                                    <constraint firstItem="2vP-cl-fQk" firstAttribute="top" secondItem="guN-Po-cun" secondAttribute="top" constant="72" id="ydv-93-mcA"/>
-                                    <constraint firstItem="eEp-0j-7Un" firstAttribute="leading" secondItem="guN-Po-cun" secondAttribute="leading" constant="132" id="zag-bI-GdJ"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="guN-Po-cun" firstAttribute="leading" secondItem="asp-5m-QRG" secondAttribute="leading" id="73O-qy-wvH"/>
-                            <constraint firstItem="guN-Po-cun" firstAttribute="top" secondItem="asp-5m-QRG" secondAttribute="top" id="OSN-rO-Cfz"/>
-                            <constraint firstItem="L3Z-HG-C6S" firstAttribute="top" secondItem="guN-Po-cun" secondAttribute="bottom" id="PeP-9N-qSk"/>
-                            <constraint firstAttribute="trailing" secondItem="guN-Po-cun" secondAttribute="trailing" id="xgw-dE-tC4"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="instructionLabel" destination="AbM-OQ-1yf" id="G17-O7-bP4"/>
-                        <outlet property="questionLabel" destination="2vP-cl-fQk" id="wl3-NW-z8G"/>
-                        <outlet property="radiobuttons" destination="Y38-cg-ZHM" id="L8O-CC-Jfn"/>
-                        <outlet property="surveyButton" destination="eEp-0j-7Un" id="4Gd-zs-tV4"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="08T-WS-y0t" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="536" y="1538"/>
-        </scene>
-        <!--Ladder Survey View Controller-->
-        <scene sceneID="Z2D-98-DUN">
-            <objects>
-                <viewController storyboardIdentifier="ladderSurvey" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KNu-bI-Zxe" customClass="LadderSurveyViewController" customModule="diaFit" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="b4N-p2-9jM"/>
-                        <viewControllerLayoutGuide type="bottom" id="1oX-3L-dxb"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="JJm-c1-ewV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqS-bW-AtK">
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphone6_background" translatesAutoresizingMaskIntoConstraints="NO" id="DSF-iL-q9h"/>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z0n-rd-eLh" customClass="DLRadioButton">
-                                        <frame key="frameInset" minX="103" minY="433" width="112" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <state key="normal" title="4">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="RadiobuttonSource:" destination="KNu-bI-Zxe" eventType="touchUpInside" id="WDp-lW-Vyt"/>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="MN3-Hz-JIl"/>
-                                            <outletCollection property="otherButtons" destination="tdz-lr-rWo" id="QJg-Cd-BpK"/>
-                                            <outletCollection property="otherButtons" destination="eJc-rp-ht1" id="fSx-Ny-wMp"/>
-                                            <outletCollection property="otherButtons" destination="1KA-6T-ldR" id="JPh-9N-lKL"/>
-                                            <outletCollection property="otherButtons" destination="vFA-5k-dUe" id="UkF-zW-gQr"/>
-                                            <outletCollection property="otherButtons" destination="M8j-Kz-Sbe" id="b1f-wy-hg1"/>
-                                            <outletCollection property="otherButtons" destination="HV9-0S-xoA" id="vPh-5h-SXb"/>
-                                            <outletCollection property="otherButtons" destination="3pj-57-691" id="0c1-pm-x81"/>
-                                            <outletCollection property="otherButtons" destination="04o-MR-B3D" id="BIs-B1-luY"/>
-                                            <outletCollection property="otherButtons" destination="Fk2-3Q-xhq" id="LnB-qj-cZe"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdz-lr-rWo" customClass="DLRadioButton">
-                                        <frame key="frameInset" minX="103" minY="461" width="112" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <state key="normal" title="3">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="RadiobuttonSource:" destination="KNu-bI-Zxe" eventType="touchUpInside" id="BeW-ET-inm"/>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="C2N-gu-nkM"/>
-                                            <outletCollection property="otherButtons" destination="z0n-rd-eLh" id="08W-2Y-io4"/>
-                                            <outletCollection property="otherButtons" destination="eJc-rp-ht1" id="H8r-JU-vXz"/>
-                                            <outletCollection property="otherButtons" destination="1KA-6T-ldR" id="VMk-qD-bjd"/>
-                                            <outletCollection property="otherButtons" destination="vFA-5k-dUe" id="P0d-vb-TTK"/>
-                                            <outletCollection property="otherButtons" destination="M8j-Kz-Sbe" id="3zj-5D-JLW"/>
-                                            <outletCollection property="otherButtons" destination="HV9-0S-xoA" id="yFj-tf-7Sa"/>
-                                            <outletCollection property="otherButtons" destination="3pj-57-691" id="N0K-oQ-Fqi"/>
-                                            <outletCollection property="otherButtons" destination="04o-MR-B3D" id="UgD-34-jj9"/>
-                                            <outletCollection property="otherButtons" destination="Fk2-3Q-xhq" id="QTf-Th-wTj"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eJc-rp-ht1" customClass="DLRadioButton">
-                                        <frame key="frameInset" minX="103" minY="491" width="112" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <state key="normal" title="2">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="RadiobuttonSource:" destination="KNu-bI-Zxe" eventType="touchUpInside" id="nFe-f3-n4K"/>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="Gmb-wc-Otr"/>
-                                            <outletCollection property="otherButtons" destination="tdz-lr-rWo" id="Yks-pY-nCU"/>
-                                            <outletCollection property="otherButtons" destination="z0n-rd-eLh" id="t7k-Pv-RbZ"/>
-                                            <outletCollection property="otherButtons" destination="1KA-6T-ldR" id="RKA-kM-YY2"/>
-                                            <outletCollection property="otherButtons" destination="vFA-5k-dUe" id="no7-Ff-948"/>
-                                            <outletCollection property="otherButtons" destination="M8j-Kz-Sbe" id="bNb-zp-3u0"/>
-                                            <outletCollection property="otherButtons" destination="HV9-0S-xoA" id="q9N-ef-9Xr"/>
-                                            <outletCollection property="otherButtons" destination="3pj-57-691" id="Tqm-s4-bGg"/>
-                                            <outletCollection property="otherButtons" destination="04o-MR-B3D" id="f0X-jv-NHV"/>
-                                            <outletCollection property="otherButtons" destination="Fk2-3Q-xhq" id="Bu4-AF-zAt"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1KA-6T-ldR" customClass="DLRadioButton">
-                                        <frame key="frameInset" minX="103" minY="519" width="112" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <state key="normal" title="1">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="RadiobuttonSource:" destination="KNu-bI-Zxe" eventType="touchUpInside" id="z6a-on-Vl9"/>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="yL0-5Z-ncY"/>
-                                            <outletCollection property="otherButtons" destination="eJc-rp-ht1" id="ebN-7U-jVK"/>
-                                            <outletCollection property="otherButtons" destination="tdz-lr-rWo" id="kLP-tY-8Cg"/>
-                                            <outletCollection property="otherButtons" destination="z0n-rd-eLh" id="7pz-P0-egN"/>
-                                            <outletCollection property="otherButtons" destination="vFA-5k-dUe" id="n7D-lR-2Mu"/>
-                                            <outletCollection property="otherButtons" destination="M8j-Kz-Sbe" id="4es-3R-8Nz"/>
-                                            <outletCollection property="otherButtons" destination="HV9-0S-xoA" id="3VV-cF-76C"/>
-                                            <outletCollection property="otherButtons" destination="3pj-57-691" id="5qm-GI-hoN"/>
-                                            <outletCollection property="otherButtons" destination="04o-MR-B3D" id="qDy-VF-aUR"/>
-                                            <outletCollection property="otherButtons" destination="Fk2-3Q-xhq" id="pH9-87-yVl"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFA-5k-dUe" customClass="DLRadioButton">
-                                        <frame key="frameInset" minX="103" minY="406" width="112" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <state key="normal" title="5">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="RadiobuttonSource:" destination="KNu-bI-Zxe" eventType="touchUpInside" id="n5c-T2-bAF"/>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="miV-Zb-CTV"/>
-                                            <outletCollection property="otherButtons" destination="z0n-rd-eLh" id="anL-cK-VG8"/>
-                                            <outletCollection property="otherButtons" destination="tdz-lr-rWo" id="aSJ-cB-oSe"/>
-                                            <outletCollection property="otherButtons" destination="eJc-rp-ht1" id="i2r-tA-RQ7"/>
-                                            <outletCollection property="otherButtons" destination="1KA-6T-ldR" id="zxQ-as-Jht"/>
-                                            <outletCollection property="otherButtons" destination="M8j-Kz-Sbe" id="lZE-iB-lo5"/>
-                                            <outletCollection property="otherButtons" destination="HV9-0S-xoA" id="Ied-a6-wCO"/>
-                                            <outletCollection property="otherButtons" destination="3pj-57-691" id="4xX-M1-ZYi"/>
-                                            <outletCollection property="otherButtons" destination="04o-MR-B3D" id="OOg-bv-o17"/>
-                                            <outletCollection property="otherButtons" destination="Fk2-3Q-xhq" id="RBR-LL-dU9"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8j-Kz-Sbe" customClass="DLRadioButton">
-                                        <frame key="frameInset" minX="103" minY="377" width="112" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <state key="normal" title="6">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="RadiobuttonSource:" destination="KNu-bI-Zxe" eventType="touchUpInside" id="rv9-Op-Oxd"/>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="TmD-Lx-IjM"/>
-                                            <outletCollection property="otherButtons" destination="1KA-6T-ldR" id="IWW-gH-zyE"/>
-                                            <outletCollection property="otherButtons" destination="eJc-rp-ht1" id="HhW-Mv-3p0"/>
-                                            <outletCollection property="otherButtons" destination="tdz-lr-rWo" id="dPr-Vi-5uQ"/>
-                                            <outletCollection property="otherButtons" destination="z0n-rd-eLh" id="yC0-Kb-key"/>
-                                            <outletCollection property="otherButtons" destination="vFA-5k-dUe" id="ltW-Y1-jIh"/>
-                                            <outletCollection property="otherButtons" destination="HV9-0S-xoA" id="Hpw-q1-Jzz"/>
-                                            <outletCollection property="otherButtons" destination="3pj-57-691" id="jTy-L7-KDc"/>
-                                            <outletCollection property="otherButtons" destination="04o-MR-B3D" id="Dv1-4v-a9F"/>
-                                            <outletCollection property="otherButtons" destination="Fk2-3Q-xhq" id="Kq4-R7-Rmz"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HV9-0S-xoA" customClass="DLRadioButton">
-                                        <frame key="frameInset" minX="103" minY="349" width="112" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <state key="normal" title="7">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="RadiobuttonSource:" destination="KNu-bI-Zxe" eventType="touchUpInside" id="NQi-7e-RcN"/>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="ROj-PB-lmY"/>
-                                            <outletCollection property="otherButtons" destination="M8j-Kz-Sbe" id="kyU-cQ-5nj"/>
-                                            <outletCollection property="otherButtons" destination="1KA-6T-ldR" id="ttx-PT-UxS"/>
-                                            <outletCollection property="otherButtons" destination="eJc-rp-ht1" id="AA7-9a-JJk"/>
-                                            <outletCollection property="otherButtons" destination="tdz-lr-rWo" id="hYh-1Q-hfK"/>
-                                            <outletCollection property="otherButtons" destination="z0n-rd-eLh" id="WKo-Ec-qMs"/>
-                                            <outletCollection property="otherButtons" destination="vFA-5k-dUe" id="zEY-Q9-5oB"/>
-                                            <outletCollection property="otherButtons" destination="3pj-57-691" id="6tT-4X-FfS"/>
-                                            <outletCollection property="otherButtons" destination="04o-MR-B3D" id="YHH-nJ-tTa"/>
-                                            <outletCollection property="otherButtons" destination="Fk2-3Q-xhq" id="3Ee-bi-gUS"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pj-57-691" customClass="DLRadioButton">
-                                        <frame key="frameInset" minX="103" minY="322" width="112" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <state key="normal" title="8">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="RadiobuttonSource:" destination="KNu-bI-Zxe" eventType="touchUpInside" id="QTX-ie-RmW"/>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="vQA-TJ-Ira"/>
-                                            <outletCollection property="otherButtons" destination="1KA-6T-ldR" id="XVz-dR-0Ov"/>
-                                            <outletCollection property="otherButtons" destination="eJc-rp-ht1" id="bPr-hD-t7R"/>
-                                            <outletCollection property="otherButtons" destination="tdz-lr-rWo" id="M9J-ft-Zb9"/>
-                                            <outletCollection property="otherButtons" destination="z0n-rd-eLh" id="xjE-dJ-zxd"/>
-                                            <outletCollection property="otherButtons" destination="vFA-5k-dUe" id="FXA-RN-VoG"/>
-                                            <outletCollection property="otherButtons" destination="M8j-Kz-Sbe" id="YVv-Ko-Mxz"/>
-                                            <outletCollection property="otherButtons" destination="HV9-0S-xoA" id="o8Y-Vp-3KH"/>
-                                            <outletCollection property="otherButtons" destination="04o-MR-B3D" id="g34-Pu-BLg"/>
-                                            <outletCollection property="otherButtons" destination="Fk2-3Q-xhq" id="1K4-Tc-ERH"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fk2-3Q-xhq" customClass="DLRadioButton">
-                                        <frame key="frameInset" minX="105" minY="271" width="112" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <state key="normal" title="10">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
-                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="RadiobuttonSource:" destination="KNu-bI-Zxe" eventType="touchUpInside" id="4zh-E9-yhr"/>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="gqV-Zc-a5J"/>
-                                            <outletCollection property="otherButtons" destination="1KA-6T-ldR" id="85d-Bu-M6q"/>
-                                            <outletCollection property="otherButtons" destination="eJc-rp-ht1" id="Fna-MS-JWf"/>
-                                            <outletCollection property="otherButtons" destination="tdz-lr-rWo" id="qUz-Bb-qqy"/>
-                                            <outletCollection property="otherButtons" destination="z0n-rd-eLh" id="70y-Ym-hhY"/>
-                                            <outletCollection property="otherButtons" destination="vFA-5k-dUe" id="gpP-6f-WKw"/>
-                                            <outletCollection property="otherButtons" destination="M8j-Kz-Sbe" id="KPb-6w-OZm"/>
-                                            <outletCollection property="otherButtons" destination="HV9-0S-xoA" id="tPf-vM-f4G"/>
-                                            <outletCollection property="otherButtons" destination="3pj-57-691" id="R0K-J4-NRd"/>
-                                            <outletCollection property="otherButtons" destination="04o-MR-B3D" id="DN5-c6-H1F"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="04o-MR-B3D" customClass="DLRadioButton">
-                                        <frame key="frameInset" minX="103" minY="295" width="112" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <state key="normal" title="9">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="RadiobuttonSource:" destination="KNu-bI-Zxe" eventType="touchUpInside" id="dhK-VV-o5c"/>
-                                            <action selector="radioButtonsSource:" destination="ZlH-S8-t73" eventType="touchUpInside" id="H86-Z8-oxJ"/>
-                                            <outletCollection property="otherButtons" destination="1KA-6T-ldR" id="usx-N5-ttd"/>
-                                            <outletCollection property="otherButtons" destination="eJc-rp-ht1" id="lco-ia-Fhs"/>
-                                            <outletCollection property="otherButtons" destination="tdz-lr-rWo" id="Ux1-aB-zQD"/>
-                                            <outletCollection property="otherButtons" destination="z0n-rd-eLh" id="Ubk-Sf-drd"/>
-                                            <outletCollection property="otherButtons" destination="vFA-5k-dUe" id="gUH-iH-7mN"/>
-                                            <outletCollection property="otherButtons" destination="M8j-Kz-Sbe" id="JHn-bZ-bRH"/>
-                                            <outletCollection property="otherButtons" destination="HV9-0S-xoA" id="NXd-c7-XIl"/>
-                                            <outletCollection property="otherButtons" destination="3pj-57-691" id="rOs-6G-HFf"/>
-                                            <outletCollection property="otherButtons" destination="Fk2-3Q-xhq" id="Ft1-S6-x7Q"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9On-ed-bGo">
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <state key="normal" title="Done">
-                                            <color key="titleColor" red="0.0290111573" green="0.045433598399999997" blue="0.61772836539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="nextButton:" destination="KNu-bI-Zxe" eventType="touchUpInside" id="ahX-Dc-W6R"/>
-                                        </connections>
-                                    </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fixed-ladder" translatesAutoresizingMaskIntoConstraints="NO" id="lQP-3c-Oij">
-                                        <frame key="frameInset" minX="223" minY="271" width="57" height="278"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LadderQuestion" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5PZ-2L-016">
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="DSF-iL-q9h" firstAttribute="leading" secondItem="tqS-bW-AtK" secondAttribute="leading" id="AtY-s9-R6e"/>
-                                    <constraint firstAttribute="trailing" secondItem="DSF-iL-q9h" secondAttribute="trailing" id="FJH-D7-NwS"/>
-                                    <constraint firstAttribute="bottom" secondItem="DSF-iL-q9h" secondAttribute="bottom" id="PVO-Ve-VvJ"/>
-                                    <constraint firstItem="5PZ-2L-016" firstAttribute="top" secondItem="tqS-bW-AtK" secondAttribute="top" constant="87" id="VNM-uu-nDz"/>
-                                    <constraint firstAttribute="trailing" secondItem="5PZ-2L-016" secondAttribute="trailing" constant="33" id="aaH-HD-aGB"/>
-                                    <constraint firstItem="9On-ed-bGo" firstAttribute="leading" secondItem="tqS-bW-AtK" secondAttribute="leading" constant="28" id="kFW-jZ-cwv"/>
-                                    <constraint firstItem="5PZ-2L-016" firstAttribute="leading" secondItem="tqS-bW-AtK" secondAttribute="leading" constant="35" id="ori-vl-h7D"/>
-                                    <constraint firstItem="DSF-iL-q9h" firstAttribute="top" secondItem="tqS-bW-AtK" secondAttribute="top" id="sCj-Em-bmR"/>
-                                    <constraint firstAttribute="bottom" secondItem="9On-ed-bGo" secondAttribute="bottom" constant="13" id="tQQ-Nx-W7G"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="tqS-bW-AtK" secondAttribute="trailing" id="Zhk-Xe-dfj"/>
-                            <constraint firstItem="tqS-bW-AtK" firstAttribute="leading" secondItem="JJm-c1-ewV" secondAttribute="leading" id="a9I-0p-n2d"/>
-                            <constraint firstItem="tqS-bW-AtK" firstAttribute="top" secondItem="JJm-c1-ewV" secondAttribute="top" id="hNa-2q-sz1"/>
-                            <constraint firstItem="1oX-3L-dxb" firstAttribute="top" secondItem="tqS-bW-AtK" secondAttribute="bottom" id="v06-nf-2Ed"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="questionLabel" destination="5PZ-2L-016" id="fIv-bS-YFb"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8IR-jc-uv5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="181" y="1538"/>
         </scene>
         <!--NDBDetailViewController-->
         <scene sceneID="iX6-yJ-MiG">
@@ -632,102 +46,6 @@
             </objects>
             <point key="canvasLocation" x="434" y="408"/>
         </scene>
-        <!--Gluco View Controller-->
-        <scene sceneID="Qew-9j-PO1">
-            <objects>
-                <viewController storyboardIdentifier="glucoseViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RaE-Vb-Epa" customClass="GlucoViewController" customModule="diaFit" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zns-ys-xRu"/>
-                        <viewControllerLayoutGuide type="bottom" id="6Vf-KB-ot2"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="BVu-RD-4ZK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Nog-Vd-YQb">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Enter Glucose Value...">
-                                    <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="submitSugar:" destination="RaE-Vb-Epa" eventType="touchUpInside" id="PVg-R4-3Uh"/>
-                                </connections>
-                            </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JV1-pf-lez">
-                                <frame key="frameInset" minY="64" width="320" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.1782763416" green="0.1782763416" blue="0.1782763416" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                <segments>
-                                    <segment title="Week"/>
-                                    <segment title="Month"/>
-                                </segments>
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="onSegmentedControl:" destination="RaE-Vb-Epa" eventType="valueChanged" id="Yvg-gW-82e"/>
-                                </connections>
-                            </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76U-KR-Sh4">
-                                <state key="normal" title="Submit">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="onSubmitButton:" destination="RaE-Vb-Epa" eventType="touchUpInside" id="NSj-V4-26Y"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohB-pm-F2a" customClass="DLRadioButton">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="191" id="Mdg-qh-1ue"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Submit non-fasting value">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="iconOnRight" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="iconSquare" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="iconStrokeWidth">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="indicatorSize">
-                                        <real key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="marginWidth">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
-                                        <color key="value" red="0.26333759130000001" green="0.4715314136" blue="0.16224736810000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="onNonFasting:" destination="RaE-Vb-Epa" eventType="touchUpInside" id="aWD-Xm-63Z"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="ohB-pm-F2a" firstAttribute="leading" secondItem="BVu-RD-4ZK" secondAttribute="leading" constant="7" id="68O-qD-NmD"/>
-                            <constraint firstItem="6Vf-KB-ot2" firstAttribute="top" secondItem="76U-KR-Sh4" secondAttribute="bottom" constant="8" id="6Pg-IR-zod"/>
-                            <constraint firstItem="6Vf-KB-ot2" firstAttribute="top" secondItem="Nog-Vd-YQb" secondAttribute="bottom" constant="8" id="Dyb-8s-0cd"/>
-                            <constraint firstItem="76U-KR-Sh4" firstAttribute="trailing" secondItem="BVu-RD-4ZK" secondAttribute="trailingMargin" constant="5" id="Fvx-EA-M17"/>
-                            <constraint firstItem="Nog-Vd-YQb" firstAttribute="leading" secondItem="BVu-RD-4ZK" secondAttribute="leading" constant="7" id="huK-ov-6hK"/>
-                            <constraint firstItem="Nog-Vd-YQb" firstAttribute="top" secondItem="ohB-pm-F2a" secondAttribute="bottom" constant="8" id="lG9-gf-3ps"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="nonFasting" destination="ohB-pm-F2a" id="ofG-uc-jsT"/>
-                        <outlet property="onSegmentedControl" destination="JV1-pf-lez" id="2H7-7A-rvg"/>
-                        <outlet property="onSubmit" destination="Nog-Vd-YQb" id="7Tt-ty-SSY"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IrJ-AP-3ea" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-201" y="1538"/>
-        </scene>
         <!--Glucometer-->
         <scene sceneID="gqz-RM-JUF">
             <objects>
@@ -749,9 +67,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xBb-Ja-Qcj">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphone6_login" translatesAutoresizingMaskIntoConstraints="NO" id="JOp-lE-R0j"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphone6_login" translatesAutoresizingMaskIntoConstraints="NO" id="JOp-lE-R0j">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aih-Z1-clF">
+                                        <rect key="frame" x="125" y="408" width="126" height="30"/>
                                         <state key="normal" title="Sign in">
                                             <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -760,16 +82,17 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password confirmation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="meP-G0-9f2">
-                                        <frame key="frameInset" minX="88" minY="289" width="198" height="30"/>
+                                        <rect key="frame" x="88" y="289" width="198" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nIn-Ky-QVe">
-                                        <frame key="frameInset" minX="89" minY="198" width="198" height="30"/>
+                                        <rect key="frame" x="89" y="198" width="198" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" spellCheckingType="no"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cB-ww-oFZ">
+                                        <rect key="frame" x="111" y="446" width="152" height="30"/>
                                         <state key="normal" title="Register me.">
                                             <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -778,7 +101,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pl0-5Y-qn6">
-                                        <frame key="frameInset" minX="89" minY="243" width="198" height="30"/>
+                                        <rect key="frame" x="89" y="243" width="198" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
@@ -841,9 +164,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3HB-4e-hMM">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphone6_background" translatesAutoresizingMaskIntoConstraints="NO" id="tC7-be-byX"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphone6_background" translatesAutoresizingMaskIntoConstraints="NO" id="tC7-be-byX">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lets setup your activity tracker" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Fa-0l-aEx">
+                                        <rect key="frame" x="11" y="34" width="298" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="Wrt-ks-R48"/>
                                             <constraint firstAttribute="width" constant="298" id="dvn-Pf-V76"/>
@@ -853,6 +180,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfR-R8-cjS">
+                                        <rect key="frame" x="137" y="269" width="51" height="33"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="33" id="nnl-Cl-0XW"/>
                                             <constraint firstAttribute="width" constant="51" id="noF-RO-X8c"/>
@@ -866,6 +194,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h5e-wH-ASM" customClass="DLRadioButton">
+                                        <rect key="frame" x="145" y="115" width="134" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="134" id="bn1-mE-7vB"/>
                                             <constraint firstAttribute="height" constant="30" id="u4v-fg-Yh6"/>
@@ -888,6 +217,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2d-Ah-bCK" customClass="DLRadioButton">
+                                        <rect key="frame" x="41" y="145" width="238" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="4CO-v2-V8f"/>
                                             <constraint firstAttribute="width" constant="238" id="7dp-RJ-gxD"/>
@@ -959,7 +289,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="fixed-ladder" width="147" height="681"/>
         <image name="iphone6_background" width="750" height="1334"/>
         <image name="iphone6_login" width="750" height="1334"/>
     </resources>
