@@ -22,8 +22,8 @@ class DeviceManager: NSObject {
     var fitBitHeight = "N/A"
 
     let oauthswift = OAuth2Swift(
-        consumerKey:    "2284P3",
-        consumerSecret: "8555f9c56302416e08ee6c34e6a4b972",
+        consumerKey:    "227LKK",
+        consumerSecret: "8642b55e0d227029d28f51468d1cddb5",
         authorizeUrl:   "https://www.fitbit.com/oauth2/authorize",
         accessTokenUrl: "https://api.fitbit.com/oauth2/token",
         responseType:   "token")
