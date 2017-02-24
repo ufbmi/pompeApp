@@ -10,9 +10,6 @@
 		580BAD7A1CEA1FF400E97414 /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580BAD791CEA1FF400E97414 /* DeviceViewController.swift */; };
 		58157D341CEF5A0600740E09 /* deviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58157D331CEF5A0600740E09 /* deviceManager.swift */; };
 		581E66EA1CEA698F00CDEC4C /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 581E66E91CEA698F00CDEC4C /* Profile.storyboard */; };
-		581E66EC1CEBA06900CDEC4C /* MedicationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581E66EB1CEBA06900CDEC4C /* MedicationsCell.swift */; };
-		58BCFA141D47D7230041863D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BCFA131D47D7230041863D /* Message.swift */; };
-		58BCFA1A1D47DCD50041863D /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BCFA191D47DCD50041863D /* MessageTableViewCell.swift */; };
 		58FB772A1D6F8A06006B5A0A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FB77291D6F8A06006B5A0A /* User.swift */; };
 		8407FBCB1D774E7700EF71E5 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407FBCA1D774E7700EF71E5 /* PieChart.swift */; };
 		847909741D30255E0040D187 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847909731D30255E0040D187 /* Reachability.swift */; };
@@ -53,10 +50,7 @@
 		580BAD791CEA1FF400E97414 /* DeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
 		58157D331CEF5A0600740E09 /* deviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = deviceManager.swift; sourceTree = "<group>"; };
 		581E66E91CEA698F00CDEC4C /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		581E66EB1CEBA06900CDEC4C /* MedicationsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationsCell.swift; sourceTree = "<group>"; };
 		582875D2D78CB043355C3571 /* Pods_diaFit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_diaFit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		58BCFA131D47D7230041863D /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		58BCFA191D47DCD50041863D /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		58FB77291D6F8A06006B5A0A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8407FBCA1D774E7700EF71E5 /* PieChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
 		847909731D30255E0040D187 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -201,7 +195,6 @@
 			children = (
 				8407FBCA1D774E7700EF71E5 /* PieChart.swift */,
 				58FB77291D6F8A06006B5A0A /* User.swift */,
-				58BCFA131D47D7230041863D /* Message.swift */,
 				DE9C61351CB6B91300E046FB /* Food.swift */,
 				DE63F0DC1CBD5F2100D55AC3 /* Nutrition.swift */,
 				DE2F44F81CC1529C00B4AEE5 /* Serving.swift */,
@@ -214,9 +207,7 @@
 		DE9C61371CB6C05300E046FB /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				58BCFA191D47DCD50041863D /* MessageTableViewCell.swift */,
 				DE9C61381CB6C08500E046FB /* FoodCell.swift */,
-				581E66EB1CEBA06900CDEC4C /* MedicationsCell.swift */,
 				DE48DFEA1CFE2B3C00F32AC6 /* FoodLogCell.swift */,
 			);
 			name = Cells;
@@ -359,13 +350,11 @@
 				DE48DFEB1CFE2B3C00F32AC6 /* FoodLogCell.swift in Sources */,
 				DE9C611E1CB6B09C00E046FB /* ViewController.swift in Sources */,
 				84C67CD51D18739D00E5324A /* TableViewMenuController.swift in Sources */,
-				58BCFA141D47D7230041863D /* Message.swift in Sources */,
 				DE9C61411CB6F99100E046FB /* NDBDetailViewController.swift in Sources */,
 				DE9C61361CB6B91300E046FB /* Food.swift in Sources */,
 				58157D341CEF5A0600740E09 /* deviceManager.swift in Sources */,
 				84C67CCF1D18736A00E5324A /* BaseViewController.swift in Sources */,
 				DE9C61451CB823D000E046FB /* AuthViewController.swift in Sources */,
-				581E66EC1CEBA06900CDEC4C /* MedicationsCell.swift in Sources */,
 				DE9C61391CB6C08500E046FB /* FoodCell.swift in Sources */,
 				58FB772A1D6F8A06006B5A0A /* User.swift in Sources */,
 				DE9C611C1CB6B09C00E046FB /* AppDelegate.swift in Sources */,
@@ -380,7 +369,6 @@
 				84C67CD71D1873AB00E5324A /* ZFRippleButton.swift in Sources */,
 				DE4E6D311CF4A77100ADCC24 /* FoodLogViewController.swift in Sources */,
 				DE0EF39F1CD2EB4500DC51BE /* LoginViewController.swift in Sources */,
-				58BCFA1A1D47DCD50041863D /* MessageTableViewCell.swift in Sources */,
 				DE0EF3A41CE1934500DC51BE /* FitbitAuthViewController.swift in Sources */,
 				847909741D30255E0040D187 /* Reachability.swift in Sources */,
 				DE4E6D331CF4C14600ADCC24 /* ReturnedFood.swift in Sources */,
