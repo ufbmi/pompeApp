@@ -23,7 +23,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     var registerSelected = false
     @IBOutlet var subViewArea: UIView!
     let userDefaults = UserDefaults.standard
-    
+       let deviceManager:DeviceManager = DeviceManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -177,9 +177,36 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                     if self.userDefaults.object(forKey:"deviceFirstTime") == nil {
                          DispatchQueue.main.async {
                         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                        let vc = storyboard.instantiateViewController(withIdentifier: "deviceSelector")
-                        self.present(vc, animated:true, completion:nil)
-                        self.userDefaults.setValue(false, forKey: "loginFirstTime")
+                            self.userDefaults.setValue(1, forKey: "device");
+                            if self.userDefaults.object(forKey: "deviceFirstTime") == nil || self.userDefaults.object(forKey: "fitbitAccess") == nil {
+                                self.deviceManager.authorizeFitbit(){(authorized: Bool) in
+                                    if authorized {
+                                        print("Authorized to FitBit ")
+                                        if self.userDefaults.object(forKey: "deviceFirstTime") == nil {
+                                            let storyBoard:UIStoryboard = UIStoryboard(name:"Profile", bundle:nil)
+                                            let toProfile = storyBoard.instantiateViewController(withIdentifier: "profileNav")
+                                            self.present(toProfile, animated: true, completion: nil)
+                                        } else {
+                                            let storyBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
+                                            let menu = storyBoard.instantiateViewController(withIdentifier: "mainMenuNav")
+                                            self.present(menu, animated: true, completion: nil)
+                                        }
+                                        self.userDefaults.setValue(false, forKey: "deviceFirstTime")
+                                    } else {
+                                        print("Error in FITBIT Authorize.")
+                                    }
+                                }
+                         
+                                
+                            }
+                            else {
+                                DispatchQueue.main.async {
+                                    let storyBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
+                                    let menu = storyBoard.instantiateViewController(withIdentifier: "mainMenuNav")
+                                    self.present(menu, animated: true, completion: nil)
+                                }
+                            }
+
                         }
                     } else if(self.userDefaults.object(forKey:"deviceFirstTime")) != nil {
                         DispatchQueue.main.async {
