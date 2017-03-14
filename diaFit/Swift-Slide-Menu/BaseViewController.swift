@@ -29,7 +29,6 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
             addChildView("fitBitLog", titleOfChildren: "FitBit Activity Log", iconName: "walker-or-runner-sportive-stick-man", storyBoard: "Fitbit")
         }
         addChildView("profileViewController", titleOfChildren: "Account", iconName: "iconmonstr-user-19-120", storyBoard: "Profile")
-        addChildView("deviceSelector", titleOfChildren: "Device", iconName: "checkmark", storyBoard: "Main")
         showFirstChild()
         
         //Create containerView that contain child view

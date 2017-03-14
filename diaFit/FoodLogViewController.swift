@@ -76,6 +76,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.userDefaults.setValue(1, forKey: "device");
         tableView.delegate = self
         tableView.dataSource = self
         refreshControl  = UIRefreshControl()

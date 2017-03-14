@@ -174,12 +174,10 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 }
                 else {
                     self.userDefaults.setValue(self.emailTextField.text,forKey: "email")
-                    if self.userDefaults.object(forKey:"deviceFirstTime") == nil {
                          DispatchQueue.main.async {
                         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                            self.userDefaults.setValue(1, forKey: "device");
-                            if self.userDefaults.object(forKey: "deviceFirstTime") == nil || self.userDefaults.object(forKey: "fitbitAccess") == nil {
                                 self.deviceManager.authorizeFitbit(){(authorized: Bool) in
+                                    print("GETHERE2")
                                     if authorized {
                                         print("Authorized to FitBit ")
                                         if self.userDefaults.object(forKey: "deviceFirstTime") == nil {
@@ -191,31 +189,19 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                                             let menu = storyBoard.instantiateViewController(withIdentifier: "mainMenuNav")
                                             self.present(menu, animated: true, completion: nil)
                                         }
-                                        self.userDefaults.setValue(false, forKey: "deviceFirstTime")
+                                            self.userDefaults.setValue(false, forKey: "deviceFirstTime")
                                     } else {
                                         print("Error in FITBIT Authorize.")
                                     }
                                 }
-                         
+                            if self.userDefaults.value(forKey: "device") != nil {
+                                let storyBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
+                                let menu = storyBoard.instantiateViewController(withIdentifier: "mainMenuNav")
+                                self.present(menu, animated: true, completion: nil)
                                 
                             }
-                            else {
-                                DispatchQueue.main.async {
-                                    let storyBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
-                                    let menu = storyBoard.instantiateViewController(withIdentifier: "mainMenuNav")
-                                    self.present(menu, animated: true, completion: nil)
-                                }
-                            }
-
-                        }
-                    } else if(self.userDefaults.object(forKey:"deviceFirstTime")) != nil {
-                        DispatchQueue.main.async {
-                            let storyBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
-                            let menu = storyBoard.instantiateViewController(withIdentifier: "mainMenuNav")
-                            self.present(menu, animated: true, completion: nil)
-                        }
-                    }
                     
+                    }
                 }
             }
             return nil;

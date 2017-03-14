@@ -172,7 +172,7 @@ class StepsViewController: UIViewController {
         let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: currentMonth, settings: labelSettings))
         let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Steps", settings: labelSettings.defaultVertical()))
         let chartFrame = CGRect(x: 10, y: 100, width: screenWidth , height: screenHeight * 0.80)
-        let chartSettings = ChartSettings()
+        var chartSettings = ChartSettings()
         chartSettings.leading = 10
         chartSettings.top = 10
         chartSettings.trailing = 10
