@@ -32,25 +32,26 @@ class DeviceManager: NSObject {
         oauthswift.accessTokenBasicAuthentification = true
         self.userDefaults.setValue(1, forKey: "device");
         let accessCode = self.userDefaults.string(forKey: "fitbitAccess")
-        if accessCode == nil  {
+  
             oauthswift.accessTokenBasicAuthentification = true
             let state: String = generateState(withLength: 20) as String
             oauthswift.authorize(withCallbackURL : URL(string: "com.mHealth.diaFit://oauth-callback")!, scope: "profile weight activity heartrate", state: state, success: {
                 credential, response, parameters in
                 if (parameters["access_token"] != nil){
-                    
+                    print("GETHERE1")
                     let token = "Bearer " + (parameters["access_token"]! as! String)
                     self.userDefaults.setValue(token, forKey:"fitbitAccess")
                     print(self.userDefaults.value(forKey: "fitbitAccess")!)
                     completion (true)
                 } else {
+                    print("GETHERE2")
                     completion (false)
                 }
                 }, failure: { error in
+                    print("GETHERE3")
                     print(error.localizedDescription)
      
             })
-        }
     }
     
         
@@ -78,6 +79,17 @@ class DeviceManager: NSObject {
                 }, failure: { error in
                     print ("ERROR at DeviceManager getFitbitSteps:")
                     print(error)
+                    self.authorizeFitbit(){(authorized: Bool) in
+                        if authorized {
+                            self.getFitBitSteps(date){(steps: Int) in
+                                completionHandler(steps)
+                            }
+                        }
+                        else {
+                            print("Error: Authorzing to use FITBIT")
+                        }
+                    }
+
             })
         }
         else {
