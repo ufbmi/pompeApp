@@ -10,7 +10,7 @@ target 'diaFit' do
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 pod 'AFNetworking', '~> 2.5'
 pod 'OAuthSwift', '~> 1.1.0'
-pod 'SwiftCharts', :git => 'https://github.com/i-schuetz/SwiftCharts.git'
+pod 'SwiftCharts', '~> 0.5'
 pod 'AWSCore', '~> 2.4.7’
 pod 'AWSLambda'
 pod 'AWSSNS'

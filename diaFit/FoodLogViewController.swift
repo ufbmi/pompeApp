@@ -82,8 +82,6 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
         refreshControl  = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(FoodLogViewController.onRefresh), for: UIControlEvents.valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
-        print("GETTOFOODLOGVIEWCONTROLLER")
-        print(userDefaults.value(forKey: "fitbitAccess"))
     }
     
     
@@ -461,79 +459,90 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
     func updateCalories(){
         let device = self.userDefaults.value(forKey: "device") as! Int
         let data = userDefaults.object(forKey: "user") as? Data
-        let unarc = NSKeyedUnarchiver(forReadingWith: data!)
-        unarc.setClass(User.self, forClassName: "User")
-        let user:User = unarc.decodeObject(forKey: "root") as! User
-        let formatter  = DateFormatter()
-        let calendar = Calendar.current
-        //FITBIT
-        if( device == 1){
-            //
-            formatter.dateFormat = "yyyy-MM-dd"
-            let date = formatter.string(from: (calendar as NSCalendar).date(byAdding: [.day],value: self.dateAddingUnit,to: Date(),options: [])!)
-            self.deviceManager.getFitBitSteps(date){(result: Int) in
-                let caloriesBurned = Double(result) * 0.044
-                var remaining = ""
-                if(!user.completeData){
-                    remaining = "N/A"
-                }
-                else {
-                    remaining = String(Int(user.getCalories() +  caloriesBurned - Double(self.caloriesConsumedLabel.text!)!))
-                }
-                DispatchQueue.main.async {
-                    self.caloriesBurnedLabel.text = String(Int(caloriesBurned))
-                    self.remainingLabel.text = remaining
-                    self.updateProgressBar()
-                }
-            }
+        //this can occur if the user is in a different device even when it has register.
+        //If this occurs we need to send hte user to the profile.
+        if (data == nil){
+            let storyBoard:UIStoryboard = UIStoryboard(name:"Profile", bundle:nil)
+            let toProfile = storyBoard.instantiateViewController(withIdentifier: "profileNav")
+            self.present(toProfile, animated: true, completion: nil)
+
         }
-        else if (device == 0){
-            //IOS
-            let stepSample = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)
-            formatter.dateStyle = DateFormatter.Style.full
-            var remaining = ""
-            self.healthManager.getSteps(stepSample!) { (stepCounts, error) -> Void in
-                if( error != nil ) {
-                    print("Error: \(error)")
-                    return
-                }
-                var steps = 0
-                if(stepCounts.isEmpty) {
+        else {
+            let unarc = NSKeyedUnarchiver(forReadingWith: data!)
+            unarc.setClass(User.self, forClassName: "User")
+            let user:User = unarc.decodeObject(forKey: "root") as! User
+            let formatter  = DateFormatter()
+            let calendar = Calendar.current
+            //FITBIT
+            if( device == 1){
+                //
+                formatter.dateFormat = "yyyy-MM-dd"
+                let date = formatter.string(from: (calendar as NSCalendar).date(byAdding: [.day],value: self.dateAddingUnit,to: Date(),options: [])!)
+                self.deviceManager.getFitBitSteps(date){(result: Int) in
+                    let caloriesBurned = Double(result) * 0.044
+                    var remaining = ""
                     if(!user.completeData){
                         remaining = "N/A"
                     }
                     else {
-                        remaining = String(Int(user.getCalories()) +  0 - Int(self.caloriesConsumedLabel.text!)!)
+                        remaining = String(Int(user.getCalories() +  caloriesBurned - Double(self.caloriesConsumedLabel.text!)!))
                     }
                     DispatchQueue.main.async {
+                        self.caloriesBurnedLabel.text = String(Int(caloriesBurned))
                         self.remainingLabel.text = remaining
                         self.updateProgressBar()
                     }
                 }
-                else {
-                    for stepCount in stepCounts {
-                        let tempStepCount = stepCount as? HKQuantitySample
-                        let startDate = formatter.string(from: (tempStepCount?.startDate)!)
-                        if(startDate == formatter.string(from: (calendar as NSCalendar).date(byAdding: [.day],value: self.dateAddingUnit,to: Date(),options: [])!)) {
-                            steps += Int(tempStepCount!.quantity.doubleValue(for: HKUnit.count()))
-                            let caloriesBurned = Double(steps) * 0.044
-                            if(!user.completeData){
-                                remaining = "N/A"
-                            }
-                            else {
-                                remaining = String(Int(user.getCalories() +  caloriesBurned - Double(self.caloriesConsumedLabel.text!)!))
-                            }
-                            DispatchQueue.main.async {
-                                self.caloriesBurnedLabel.text = String(Int(caloriesBurned))
-                                self.remainingLabel.text = remaining
-                                self.updateProgressBar()
-                            }
+            }
+            else if (device == 0){
+                //IOS
+                let stepSample = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)
+                formatter.dateStyle = DateFormatter.Style.full
+                var remaining = ""
+                self.healthManager.getSteps(stepSample!) { (stepCounts, error) -> Void in
+                    if( error != nil ) {
+                        print("Error: \(error)")
+                        return
+                    }
+                    var steps = 0
+                    if(stepCounts.isEmpty) {
+                        if(!user.completeData){
+                            remaining = "N/A"
                         }
-                        
+                        else {
+                            remaining = String(Int(user.getCalories()) +  0 - Int(self.caloriesConsumedLabel.text!)!)
+                        }
+                        DispatchQueue.main.async {
+                            self.remainingLabel.text = remaining
+                            self.updateProgressBar()
+                        }
+                    }
+                    else {
+                        for stepCount in stepCounts {
+                            let tempStepCount = stepCount as? HKQuantitySample
+                            let startDate = formatter.string(from: (tempStepCount?.startDate)!)
+                            if(startDate == formatter.string(from: (calendar as NSCalendar).date(byAdding: [.day],value: self.dateAddingUnit,to: Date(),options: [])!)) {
+                                steps += Int(tempStepCount!.quantity.doubleValue(for: HKUnit.count()))
+                                let caloriesBurned = Double(steps) * 0.044
+                                if(!user.completeData){
+                                    remaining = "N/A"
+                                }
+                                else {
+                                    remaining = String(Int(user.getCalories() +  caloriesBurned - Double(self.caloriesConsumedLabel.text!)!))
+                                }
+                                DispatchQueue.main.async {
+                                    self.caloriesBurnedLabel.text = String(Int(caloriesBurned))
+                                    self.remainingLabel.text = remaining
+                                    self.updateProgressBar()
+                                }
+                            }
+                            
+                        }
                     }
                 }
+                
             }
-            
+
         }
     }
     

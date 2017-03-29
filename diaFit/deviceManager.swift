@@ -38,17 +38,14 @@ class DeviceManager: NSObject {
             oauthswift.authorize(withCallbackURL : URL(string: "com.mHealth.diaFit://oauth-callback")!, scope: "profile weight activity heartrate", state: state, success: {
                 credential, response, parameters in
                 if (parameters["access_token"] != nil){
-                    print("GETHERE1")
                     let token = "Bearer " + (parameters["access_token"]! as! String)
                     self.userDefaults.setValue(token, forKey:"fitbitAccess")
                     print(self.userDefaults.value(forKey: "fitbitAccess")!)
                     completion (true)
                 } else {
-                    print("GETHERE2")
                     completion (false)
                 }
                 }, failure: { error in
-                    print("GETHERE3")
                     print(error.localizedDescription)
      
             })

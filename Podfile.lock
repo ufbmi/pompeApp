@@ -28,7 +28,7 @@ PODS:
     - AWSCore (= 2.4.16)
   - CorePlot (2.2)
   - DLRadioButton (1.4.9)
-  - OAuthSwift (1.1.0)
+  - OAuthSwift (1.1.1)
   - SwiftCharts (0.5.1)
   - SwiftyJSON (3.1.4)
 
@@ -41,21 +41,16 @@ DEPENDENCIES:
   - CorePlot (~> 2.1)
   - DLRadioButton (~> 1.4)
   - OAuthSwift (~> 1.1.0)
-  - SwiftCharts (from `https://github.com/i-schuetz/SwiftCharts.git`)
+  - SwiftCharts (~> 0.5)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
-  SwiftCharts:
-    :git: https://github.com/i-schuetz/SwiftCharts.git
   SwiftyJSON:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
-  SwiftCharts:
-    :commit: 79cc20a1d87dfe7d549b6c8aee7a9bc2c1b34572
-    :git: https://github.com/i-schuetz/SwiftCharts.git
   SwiftyJSON:
-    :commit: adf34cfb4c9f2ff4e3c420c6d9fb1e2eaf3b3791
+    :commit: 74cda0fa5ae0be109b60a7dad396bcf92a9d5a13
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
@@ -66,10 +61,10 @@ SPEC CHECKSUMS:
   AWSSNS: f7eb9a5c19410e2a0164febc2cd665831c1cd26c
   CorePlot: cbe0c6e14220705e32e06a89c7d6a5a908b7d7d8
   DLRadioButton: 7bb8a6e3768b572469ace553391ab4d2af6f9c19
-  OAuthSwift: 7ec2c62274f6bdc30b1ba3b799c39a6fdcaea0e5
-  SwiftCharts: 5c711f225e65bb967bf9ac952888670d461b80af
+  OAuthSwift: 6e3a103b3e5639411769cc7e199ec7e14bd1547f
+  SwiftCharts: d263289cdc7fc955fef54ae3bc6529f696e69933
   SwiftyJSON: 05cf0e98a950e2ba343735264f5a96b81e755d00
 
-PODFILE CHECKSUM: 36107a4b2c67a917e384262c1bab79e4a932b89c
+PODFILE CHECKSUM: 7f3b6f1a8599e2dcd55f9a6c3967a8c320ad693e
 
 COCOAPODS: 1.0.1

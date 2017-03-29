@@ -72,9 +72,6 @@ class FitbitAuthViewController: UIViewController {
     func getSteps() {
         
         deviceManager.getFitbitSteps { (result) in
-            print("GETFITBITSTEPS")
-            print(result)
-            print("GETFITBITSTEPS")
             let calendar = Calendar.current
             let dateformatter = DateFormatter()
             dateformatter.dateFormat = "yyyy-MM-dd"

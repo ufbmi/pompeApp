@@ -27,7 +27,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         passConfTextField.isHidden = true;
         let screenSize: CGRect = UIScreen.main.bounds;
@@ -141,7 +140,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     
     func authenticateUser() {
         let lambdaInvoker = AWSLambdaInvoker.default()
-        let jsonObject: [String: AnyObject] = ["email": emailTextField.text! as AnyObject, "password": passwordTextField.text! as AnyObject];
+        let emailAddress = emailTextField.text!.lowercased()
+        let jsonObject: [String: AnyObject] = ["email": emailAddress as AnyObject, "password": passwordTextField.text! as AnyObject];
         let task = lambdaInvoker.invokeFunction("diaFitLogin", jsonObject: jsonObject)
         task.continue(successBlock: { (task: AWSTask) -> Any? in
             if task.error != nil {
@@ -177,7 +177,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                          DispatchQueue.main.async {
                         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                                 self.deviceManager.authorizeFitbit(){(authorized: Bool) in
-                                    print("GETHERE2")
                                     if authorized {
                                         print("Authorized to FitBit ")
                                         if self.userDefaults.object(forKey: "deviceFirstTime") == nil {
@@ -188,19 +187,16 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                                             let storyBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
                                             let menu = storyBoard.instantiateViewController(withIdentifier: "mainMenuNav")
                                             self.present(menu, animated: true, completion: nil)
+                                            
                                         }
-                                            self.userDefaults.setValue(false, forKey: "deviceFirstTime")
+                                        //Once htey login for the first time they do not need to go through this.
+                                        self.userDefaults.set(false, forKey: "loginFirstTime");
+                                        self.userDefaults.setValue(false, forKey: "deviceFirstTime")
+                                        self.userDefaults.synchronize()
                                     } else {
                                         print("Error in FITBIT Authorize.")
                                     }
                                 }
-                            if self.userDefaults.value(forKey: "device") != nil {
-                                let storyBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
-                                let menu = storyBoard.instantiateViewController(withIdentifier: "mainMenuNav")
-                                self.present(menu, animated: true, completion: nil)
-                                
-                            }
-                    
                     }
                 }
             }
@@ -210,7 +206,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     
     func registerUser() {
         let lambdaInvoker = AWSLambdaInvoker.default()
-        let jsonObject: [String: AnyObject] = ["email": emailTextField.text! as AnyObject, "password": passwordTextField.text! as AnyObject];
+        let emailAddress = emailTextField.text!.lowercased()
+        let jsonObject: [String: AnyObject] = ["email":  emailAddress as AnyObject, "password": passwordTextField.text! as AnyObject];
         let task = lambdaInvoker.invokeFunction("diaFitCreateUser", jsonObject: jsonObject)
         task.continue(successBlock: { (task: AWSTask) -> Any? in
             if task.error != nil {
