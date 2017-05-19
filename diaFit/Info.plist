@@ -6,6 +6,8 @@
 	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Pompe</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -52,6 +54,12 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Diafit is a diabeties type 2 app</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Diafit is a diabeties type 2 app</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Diafit is a diabeties type 2 app we want to remind users to take medications</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -72,11 +80,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>NSHealthShareUsageDescription</key>
-    <string>Diafit is a diabeties type 2 app</string>
-    <key>NSHealthUpdateUsageDescription</key>
-    <string>Diafit is a diabeties type 2 app</string>
-    <key>NSRemindersUsageDescription</key>
-    <string>Diafit is a diabeties type 2 app we want to remind users to take medications</string>
 </dict>
 </plist>

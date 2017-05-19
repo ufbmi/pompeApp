@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5571B0111E9E9239006DA73F /* WeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5571B0101E9E9239006DA73F /* WeightViewController.swift */; };
+		5571B0121E9E930F006DA73F /* Weight.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5571B0141E9E930F006DA73F /* Weight.storyboard */; };
+		5571B01C1E9EA3CC006DA73F /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5571B01B1E9EA3CC006DA73F /* StepsViewController.swift */; };
+		5571B01F1E9EA3D6006DA73F /* HealthKit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5571B01D1E9EA3D6006DA73F /* HealthKit.storyboard */; };
 		580BAD7A1CEA1FF400E97414 /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580BAD791CEA1FF400E97414 /* DeviceViewController.swift */; };
 		58157D341CEF5A0600740E09 /* deviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58157D331CEF5A0600740E09 /* deviceManager.swift */; };
 		581E66EA1CEA698F00CDEC4C /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 581E66E91CEA698F00CDEC4C /* Profile.storyboard */; };
@@ -24,9 +28,7 @@
 		DE0EF3A41CE1934500DC51BE /* FitbitAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0EF3A31CE1934500DC51BE /* FitbitAuthViewController.swift */; };
 		DE2F44F91CC1529C00B4AEE5 /* Serving.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F44F81CC1529C00B4AEE5 /* Serving.swift */; };
 		DE2F44FC1CC5442300B4AEE5 /* Nutrition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE2F44FA1CC5442300B4AEE5 /* Nutrition.storyboard */; };
-		DE2F44FF1CC5445500B4AEE5 /* HealthKit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE2F44FD1CC5445500B4AEE5 /* HealthKit.storyboard */; };
 		DE2F45021CC544BE00B4AEE5 /* Glucometer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE2F45001CC544BE00B4AEE5 /* Glucometer.storyboard */; };
-		DE2F450B1CC6964100B4AEE5 /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F450A1CC6964100B4AEE5 /* StepsViewController.swift */; };
 		DE2F450D1CC6969C00B4AEE5 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE2F450C1CC6969C00B4AEE5 /* HealthKit.framework */; };
 		DE2F45121CC697E600B4AEE5 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F45111CC697E600B4AEE5 /* HealthManager.swift */; };
 		DE48DFEB1CFE2B3C00F32AC6 /* FoodLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE48DFEA1CFE2B3C00F32AC6 /* FoodLogCell.swift */; };
@@ -38,7 +40,6 @@
 		DE9C611E1CB6B09C00E046FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9C611D1CB6B09C00E046FB /* ViewController.swift */; };
 		DE9C61211CB6B09C00E046FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9C611F1CB6B09C00E046FB /* Main.storyboard */; };
 		DE9C61231CB6B09C00E046FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9C61221CB6B09C00E046FB /* Assets.xcassets */; };
-		DE9C61261CB6B09C00E046FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9C61241CB6B09C00E046FB /* LaunchScreen.storyboard */; };
 		DE9C61361CB6B91300E046FB /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9C61351CB6B91300E046FB /* Food.swift */; };
 		DE9C61391CB6C08500E046FB /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9C61381CB6C08500E046FB /* FoodCell.swift */; };
 		DE9C61411CB6F99100E046FB /* NDBDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9C61401CB6F99100E046FB /* NDBDetailViewController.swift */; };
@@ -47,6 +48,10 @@
 
 /* Begin PBXFileReference section */
 		2831E7E3FE507CA1D4D9BB5D /* Pods-diaFit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diaFit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-diaFit/Pods-diaFit.debug.xcconfig"; sourceTree = "<group>"; };
+		5571B0101E9E9239006DA73F /* WeightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightViewController.swift; sourceTree = "<group>"; };
+		5571B0151E9E9310006DA73F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Weight.storyboard; sourceTree = "<group>"; };
+		5571B01B1E9EA3CC006DA73F /* StepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsViewController.swift; sourceTree = "<group>"; };
+		5571B01E1E9EA3D6006DA73F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/HealthKit.storyboard; sourceTree = "<group>"; };
 		580BAD791CEA1FF400E97414 /* DeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
 		58157D331CEF5A0600740E09 /* deviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = deviceManager.swift; sourceTree = "<group>"; };
 		581E66E91CEA698F00CDEC4C /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -64,9 +69,7 @@
 		DE0EF3A31CE1934500DC51BE /* FitbitAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FitbitAuthViewController.swift; sourceTree = "<group>"; };
 		DE2F44F81CC1529C00B4AEE5 /* Serving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serving.swift; sourceTree = "<group>"; };
 		DE2F44FB1CC5442300B4AEE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Nutrition.storyboard; sourceTree = "<group>"; };
-		DE2F44FE1CC5445500B4AEE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/HealthKit.storyboard; sourceTree = "<group>"; };
 		DE2F45011CC544BE00B4AEE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Glucometer.storyboard; sourceTree = "<group>"; };
-		DE2F450A1CC6964100B4AEE5 /* StepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsViewController.swift; sourceTree = "<group>"; };
 		DE2F450C1CC6969C00B4AEE5 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		DE2F450E1CC6969C00B4AEE5 /* diaFit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = diaFit.entitlements; sourceTree = "<group>"; };
 		DE2F45111CC697E600B4AEE5 /* HealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
@@ -80,7 +83,6 @@
 		DE9C611D1CB6B09C00E046FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DE9C61201CB6B09C00E046FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DE9C61221CB6B09C00E046FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DE9C61251CB6B09C00E046FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE9C61271CB6B09C00E046FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE9C61351CB6B91300E046FB /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		DE9C61381CB6C08500E046FB /* FoodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
@@ -160,16 +162,16 @@
 				DE9C612D1CB6B17B00E046FB /* ViewControllers */,
 				DE9C611B1CB6B09C00E046FB /* AppDelegate.swift */,
 				847909731D30255E0040D187 /* Reachability.swift */,
+				DE2F45111CC697E600B4AEE5 /* HealthManager.swift */,
+				DE2F45001CC544BE00B4AEE5 /* Glucometer.storyboard */,
+				5571B01D1E9EA3D6006DA73F /* HealthKit.storyboard */,
 				DE9C611F1CB6B09C00E046FB /* Main.storyboard */,
 				DE0EF3A01CE1917700DC51BE /* Fitbit.storyboard */,
-				DE2F45001CC544BE00B4AEE5 /* Glucometer.storyboard */,
-				DE2F44FD1CC5445500B4AEE5 /* HealthKit.storyboard */,
 				DE2F44FA1CC5442300B4AEE5 /* Nutrition.storyboard */,
-				DE9C61221CB6B09C00E046FB /* Assets.xcassets */,
-				DE9C61241CB6B09C00E046FB /* LaunchScreen.storyboard */,
-				DE9C61271CB6B09C00E046FB /* Info.plist */,
-				DE2F45111CC697E600B4AEE5 /* HealthManager.swift */,
+				5571B0141E9E930F006DA73F /* Weight.storyboard */,
 				581E66E91CEA698F00CDEC4C /* Profile.storyboard */,
+				DE9C61221CB6B09C00E046FB /* Assets.xcassets */,
+				DE9C61271CB6B09C00E046FB /* Info.plist */,
 			);
 			path = diaFit;
 			sourceTree = "<group>";
@@ -178,14 +180,15 @@
 			isa = PBXGroup;
 			children = (
 				DE9C611D1CB6B09C00E046FB /* ViewController.swift */,
-				DE9C61401CB6F99100E046FB /* NDBDetailViewController.swift */,
 				DE9C61441CB823D000E046FB /* AuthViewController.swift */,
-				DE63F0D71CBD42CB00D55AC3 /* ProfileViewController.swift */,
-				DE2F450A1CC6964100B4AEE5 /* StepsViewController.swift */,
 				DE0EF39E1CD2EB4500DC51BE /* LoginViewController.swift */,
+				DE9C61401CB6F99100E046FB /* NDBDetailViewController.swift */,
 				580BAD791CEA1FF400E97414 /* DeviceViewController.swift */,
-				DE0EF3A31CE1934500DC51BE /* FitbitAuthViewController.swift */,
+				DE63F0D71CBD42CB00D55AC3 /* ProfileViewController.swift */,
+				5571B01B1E9EA3CC006DA73F /* StepsViewController.swift */,
 				DE4E6D301CF4A77100ADCC24 /* FoodLogViewController.swift */,
+				DE0EF3A31CE1934500DC51BE /* FitbitAuthViewController.swift */,
+				5571B0101E9E9239006DA73F /* WeightViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -198,8 +201,8 @@
 				DE9C61351CB6B91300E046FB /* Food.swift */,
 				DE63F0DC1CBD5F2100D55AC3 /* Nutrition.swift */,
 				DE2F44F81CC1529C00B4AEE5 /* Serving.swift */,
-				58157D331CEF5A0600740E09 /* deviceManager.swift */,
 				DE4E6D321CF4C14600ADCC24 /* ReturnedFood.swift */,
+				58157D331CEF5A0600740E09 /* deviceManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -248,7 +251,7 @@
 				TargetAttributes = {
 					DE9C61171CB6B09C00E046FB = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = M2P83EA3A5;
+						DevelopmentTeam = 9VCQZ56KLT;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
@@ -282,10 +285,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE0EF3A21CE1917700DC51BE /* Fitbit.storyboard in Resources */,
-				DE9C61261CB6B09C00E046FB /* LaunchScreen.storyboard in Resources */,
+				5571B01F1E9EA3D6006DA73F /* HealthKit.storyboard in Resources */,
 				DE9C61231CB6B09C00E046FB /* Assets.xcassets in Resources */,
+				5571B0121E9E930F006DA73F /* Weight.storyboard in Resources */,
 				581E66EA1CEA698F00CDEC4C /* Profile.storyboard in Resources */,
-				DE2F44FF1CC5445500B4AEE5 /* HealthKit.storyboard in Resources */,
 				DE2F45021CC544BE00B4AEE5 /* Glucometer.storyboard in Resources */,
 				DE9C61211CB6B09C00E046FB /* Main.storyboard in Resources */,
 				DE2F44FC1CC5442300B4AEE5 /* Nutrition.storyboard in Resources */,
@@ -337,7 +340,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -359,7 +362,6 @@
 				58FB772A1D6F8A06006B5A0A /* User.swift in Sources */,
 				DE9C611C1CB6B09C00E046FB /* AppDelegate.swift in Sources */,
 				DE2F44F91CC1529C00B4AEE5 /* Serving.swift in Sources */,
-				DE2F450B1CC6964100B4AEE5 /* StepsViewController.swift in Sources */,
 				84C67CD31D18739100E5324A /* MenuTableViewCell.swift in Sources */,
 				580BAD7A1CEA1FF400E97414 /* DeviceViewController.swift in Sources */,
 				DE63F0D81CBD42CB00D55AC3 /* ProfileViewController.swift in Sources */,
@@ -367,11 +369,13 @@
 				DE2F45121CC697E600B4AEE5 /* HealthManager.swift in Sources */,
 				8407FBCB1D774E7700EF71E5 /* PieChart.swift in Sources */,
 				84C67CD71D1873AB00E5324A /* ZFRippleButton.swift in Sources */,
+				5571B01C1E9EA3CC006DA73F /* StepsViewController.swift in Sources */,
 				DE4E6D311CF4A77100ADCC24 /* FoodLogViewController.swift in Sources */,
 				DE0EF39F1CD2EB4500DC51BE /* LoginViewController.swift in Sources */,
 				DE0EF3A41CE1934500DC51BE /* FitbitAuthViewController.swift in Sources */,
 				847909741D30255E0040D187 /* Reachability.swift in Sources */,
 				DE4E6D331CF4C14600ADCC24 /* ReturnedFood.swift in Sources */,
+				5571B0111E9E9239006DA73F /* WeightViewController.swift in Sources */,
 				DE63F0DD1CBD5F2100D55AC3 /* Nutrition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,6 +383,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		5571B0141E9E930F006DA73F /* Weight.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5571B0151E9E9310006DA73F /* Base */,
+			);
+			name = Weight.storyboard;
+			sourceTree = "<group>";
+		};
+		5571B01D1E9EA3D6006DA73F /* HealthKit.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5571B01E1E9EA3D6006DA73F /* Base */,
+			);
+			name = HealthKit.storyboard;
+			sourceTree = "<group>";
+		};
 		DE0EF3A01CE1917700DC51BE /* Fitbit.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -395,14 +415,6 @@
 			name = Nutrition.storyboard;
 			sourceTree = "<group>";
 		};
-		DE2F44FD1CC5445500B4AEE5 /* HealthKit.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DE2F44FE1CC5445500B4AEE5 /* Base */,
-			);
-			name = HealthKit.storyboard;
-			sourceTree = "<group>";
-		};
 		DE2F45001CC544BE00B4AEE5 /* Glucometer.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -417,14 +429,6 @@
 				DE9C61201CB6B09C00E046FB /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		DE9C61241CB6B09C00E046FB /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DE9C61251CB6B09C00E046FB /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -528,9 +532,10 @@
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = diaFit/diaFit.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9VCQZ56KLT;
 				INFOPLIST_FILE = diaFit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.uf.diafitApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uf.diafitApp2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
@@ -546,9 +551,10 @@
 				CODE_SIGN_ENTITLEMENTS = diaFit/diaFit.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9VCQZ56KLT;
 				INFOPLIST_FILE = diaFit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.uf.diafitApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uf.diafitApp2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;

@@ -91,7 +91,7 @@ class DeviceViewController: UIViewController {
                         self.userDefaults.setValue("Authorized", forKey: "healthkitAccess")
                     } else {
                         if error != nil {
-                            print(error)
+                            print(error as Any)
                         }
                     }
                 }

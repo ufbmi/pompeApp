@@ -1,9 +1,9 @@
 //
-//  FitbitAuthViewController.swift
+//  WeightViewController.swift
 //  diaFit
 //
-//  Created by Liang,Franky Z on 5/9/16.
-//  Copyright © 2016 Liang,Franky Z. All rights reserved.
+//  Created by Wang,Rongrong on 4/12/17.
+//  Copyright © 2017 Liang,Franky Z. All rights reserved.
 //
 
 import UIKit
@@ -11,40 +11,46 @@ import OAuthSwift
 import AWSCore
 import AWSLambda
 import SwiftCharts
+import HealthKit
+import ActionSheetPicker_3_0
 
+class WeightViewController: UIViewController{
 
-class FitbitAuthViewController: UIViewController {
+   //36* let email = self.userDefaults.value(forKey: "email") as! String
+    let lambdaInvoker = AWSLambdaInvoker.default()
     
     let userDefaults = UserDefaults.standard
     var chart: Chart?
-    var stepsArray =  [Int:(Int,Int)]()
-    var stepsValues = [(Int,Int)]()
+    var weightArray =  [Int:(Int,Double)]()
+    var weightArrayForTable =  [Int:(Int,String)]()
+    var weightValues = [(Int,Int)]()
     var totalDays = 7
-    let deviceManager:DeviceManager = DeviceManager()
+    let dm:DeviceManager = DeviceManager()
     
     @IBOutlet weak var timeSwitch: UISegmentedControl!
     override func viewDidDisappear(_ animated: Bool) {
         chart?.clearView()
-        setStepstoZero()
+        setWeightToZero()
     }
     
-    func setStepstoZero() {
-        stepsArray.removeAll()
-        stepsValues.removeAll()
+    func setWeightToZero() {
+        weightArray.removeAll()
+        weightArrayForTable.removeAll()
+        weightValues.removeAll()
     }
     
     @IBAction func onSegmentedControl(_ sender: AnyObject) {
         chart?.clearView()
-        setStepstoZero()
+        setWeightToZero()
         if(timeSwitch.selectedSegmentIndex == 0) {
             DispatchQueue.main.async(execute: { () -> Void in
                 self.totalDays = 7
-                self.getSteps()
+                self.getWeight()
             })
         } else {
             DispatchQueue.main.async(execute: { () -> Void in
                 self.totalDays = 30
-                self.getSteps()
+                self.getWeight()
             })
         }
         
@@ -52,6 +58,7 @@ class FitbitAuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //barChartView.delegate = self
     }
     
     
@@ -60,49 +67,64 @@ class FitbitAuthViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     
     override func viewDidAppear(_ animated: Bool) {
         checkConnection()
-        self.getSteps()
+        self.getWeight()
     }
     
     
     
-    func getSteps() {
+    func getWeight() {
         
-        deviceManager.getFitbitSteps { (result) in
+        dm.getFitbitWeight{ (result) in
             let calendar = Calendar.current
             let dateformatter = DateFormatter()
             dateformatter.dateFormat = "yyyy-MM-dd"
-            for i in 0 ..< self.totalDays {
+              var storedValue = 0.0
+            var i = self.totalDays
+            while i >= 0 {
                 let dateComplete = dateformatter.string(from: (calendar as NSCalendar).date(byAdding: [.day],value: -i,to: Date(),options: [])!)
                 let formattedGrabbedDate = dateformatter.date(from: dateComplete)
                 let components = (calendar as NSCalendar).components(.day , from: formattedGrabbedDate!)
-                let dateNumber = Int(components.day!)
-                    if let dictLevel1 = result as? [String: Any] {  //json
-                        if let dictLevel2 = dictLevel1["activities-steps"] as? NSArray {//days
-                            for dictValues in dictLevel2{//for eachday
-                                let values = dictValues as? [String: String]
-                                let dateReturned = (values?["dateTime"])! as String     //get steps for each day
-                                if dateReturned == dateComplete {
-                                    let steps = values?["value"]
-                                    self.stepsArray[-i] = (Int(dateNumber), Int(steps!)!)
-                                    //print(self.stepsArray[-i] as Any)
-                                    break
-                                }
+                let dateNumber = Int(components.day!)//具体日期, started from today
+                 let dictLevel1 = result as? [String: Any]
+        
+                
+                if let dictLevel2 = dictLevel1?["weight"] as? NSArray{//weigh
+                        for dictValues in dictLevel2{
+                            let values = dictValues as? [String: Any]
+                            let dateReturned = (values?["date"])! as! String     //date
+                           if (dateReturned == dateComplete){       //only cared about the date that is in json
+                            if let weight = (values?["weight"]) as? Double {//weight
+                            
+                                let weightPounds = Double(round(100*weight * 2.20462)/100)
+                                storedValue = weightPounds
+                                print(weightPounds)
+                                self.weightArray[-i] = (Int(dateNumber), storedValue)
+                                self.weightArrayForTable[-i] = (Int(dateNumber), String(weightPounds))
+
+                                print(self.weightArrayForTable[-i] as Any)
                             }
-                        }
+                            }
+                    }
                 }
-               //if(self.stepsArray[-i] == nil){
-                   //self.stepsArray[-i] = (dateNumber, 0)}
-                print(self.stepsArray[-i] as Any)
+               if(self.weightArray[-i] == nil){
+                    self.weightArray[-i] = (dateNumber, storedValue)
+                }
+                if(self.weightArrayForTable[-i] == nil){
+                    self.weightArrayForTable[-i] = (dateNumber, " ")}
+                //print(self.weightArray[-i] as Any)
+                i -= 1
+               // print(self.weightArrayForTable[-i] as Any)
             }
             DispatchQueue.main.async(execute: { () -> Void in
                 self.displayChart()
             })
         }
     }
+    
     
     func displayChart(){
         let screenSize: CGRect = UIScreen.main.bounds
@@ -111,14 +133,16 @@ class FitbitAuthViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM"
         let currentMonth = dateFormatter.string(from: Date())
-        let sortedArray = self.stepsArray.sorted(by: { $0.0 < $1.0 })
-        let chartPoints = sortedArray.map{ChartPoint(x: MyMultiLabelAxisValue(position: Int(-$0.0), label: $0.1.0 ), y: ChartAxisValueDouble($0.1.1))}
-        let labelSettings   = ChartLabelSettings(font: UIFont.systemFont(ofSize: 10))
+        let sortedArray = self.weightArray.sorted(by: { $0.0 < $1.0 })
+        let chartPoints = sortedArray.map{ChartPoint(x: MyMultiLabelAxisValue(position: Double(-$0.0), label: $0.1.0 ), y: ChartAxisValueDouble($0.1.1))}
+        let labelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 10))
         let allChartPoints = chartPoints
         let xValues: [ChartAxisValue] = (NSOrderedSet(array: allChartPoints).array as! [ChartPoint]).map{$0.x}
         let yValues = ChartAxisValuesGenerator.generateYAxisValuesWithChartPoints(allChartPoints, minSegmentCount: 5, maxSegmentCount: 20, multiple: 2, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: labelSettings)}, addPaddingSegmentIfEdge: false)
         let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: currentMonth, settings: labelSettings))
-        let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Your Steps", settings: labelSettings.defaultVertical()))
+        let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Your Weight", settings: labelSettings.defaultVertical()))
+        
+        //position and color of the chart
         let chartFrame = CGRect(x: 5, y: 100, width: screenWidth , height: screenHeight * 0.78)
         let chartSettings = ChartSettings()
         chartSettings.leading = 10
@@ -135,7 +159,7 @@ class FitbitAuthViewController: UIViewController {
         
         let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
         let (xAxis, yAxis, innerFrame) = (coordsSpace.xAxis, coordsSpace.yAxis, coordsSpace.chartInnerFrame)
-        let c1 = UIColor(red: 0.76, green: 0.76, blue: 0.76, alpha: 0.7)
+        let c1 = UIColor(red: 0.2, green: 0.6, blue: 0.8, alpha: 0.7)
         let chartPointsLayer = ChartPointsAreaLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, chartPoints: chartPoints, areaColor: c1, animDuration: 2, animDelay: 0, addContainerPoints: true)
         let lineModel = ChartLineModel( chartPoints: chartPoints, lineColor: UIColor.black, animDuration: 1, animDelay: 0)
         let chartPointsLineLayer = ChartPointsLineLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, lineModels: [lineModel])
@@ -167,13 +191,13 @@ class FitbitAuthViewController: UIViewController {
         )
         self.view.addSubview(chart.view)
         self.chart = chart
-        //saveResults()
+        updateWeightToAWSTable()
+        
     }
     
-    func  saveResults(){
+    func  updateWeightToAWSTable(){
         let email = self.userDefaults.value(forKey: "email") as! String
-         let lambdaInvoker = AWSLambdaInvoker.default()
-        //AWS
+        let lambdaInvoker = AWSLambdaInvoker.default()
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
@@ -181,16 +205,16 @@ class FitbitAuthViewController: UIViewController {
         var expressionAttributeNames = [String:String]()
         var expressionAttributeValues = [String:String]()
         for i in 0 ..< self.totalDays {
-            updateExpression = updateExpression + " #day" + String(i) + " = :steps" + String(i) + ","
+            updateExpression = updateExpression + " #day" + String(i) + " = :weight" + String(i) + ","
             let indexDays = "#day" + String(i)
-            let indexSteps = ":steps" + String(i)
+            let indexWeight = ":weight" + String(i)
             let dateString = dateFormatter.string(from: (Calendar.current as NSCalendar).date(byAdding: .day, value: -i, to: date, options: [])!)
             expressionAttributeNames[indexDays] = dateString
-            expressionAttributeValues[indexSteps] = String(Int(self.stepsArray[-i]!.1))
+            expressionAttributeValues[indexWeight] = String(self.weightArrayForTable[-i]!.1)
         }
         updateExpression = String(updateExpression.characters.dropLast())
         let jsonObject: [String: AnyObject] = [
-            "TableName":  "userSteps" as AnyObject,
+            "TableName":  "diaFitWeight" as AnyObject,
             "operation": "update" as AnyObject ,
             "Key": ["email": email] as AnyObject,
             "UpdateExpression": updateExpression as AnyObject,
@@ -199,12 +223,12 @@ class FitbitAuthViewController: UIViewController {
             "ReturnValues": "UPDATED_NEW"as AnyObject
         ]
         let task = lambdaInvoker.invokeFunction("handlerDiaFIT", jsonObject: jsonObject)
-         task.continue(successBlock: { (task: AWSTask) -> Any? in
+        task.continue(successBlock: { (task: AWSTask) -> Any? in
             if task.error != nil {
                 print(task.error as Any)
             } else {
                 if task.result != nil {
-                    print("Updated the AWS steps table!")
+                    print("Update weight to AWSTable!")
                 } else {
                     print("Exception: \(String(describing: task.exception))")
                 }
@@ -212,13 +236,12 @@ class FitbitAuthViewController: UIViewController {
             return nil
         })
     }
-    
-    
+
     fileprivate class MyMultiLabelAxisValue: ChartAxisValue {
         
-        fileprivate var position: Int
+        fileprivate var position: Double
         fileprivate var label: Int
-        init(position: Int, label:Int) {
+        init(position: Double, label:Int) {
             self.position = position
             self.label = label
             super.init(scalar: Double(-self.position))
@@ -230,6 +253,5 @@ class FitbitAuthViewController: UIViewController {
             ]
         }
     }
-    
     
 }

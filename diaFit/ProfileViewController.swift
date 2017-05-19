@@ -180,10 +180,10 @@ class ProfileViewController: ChildViewController {
         
         
         
-    }
+    }   //height
     
     @IBAction func onWeight(_ sender: AnyObject) {
-        let alertController = UIAlertController(title: "Weight", message: "How would you like your weigh recorded?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Weight", message: "How would you like your weight recorded?", preferredStyle: .alert)
         let lbAction = UIAlertAction(title: "Pounds", style: .default, handler: { (action: UIAlertAction) -> Void in
             ActionSheetMultipleStringPicker.show(withTitle: "Pounds", rows: [
                 self.weightNumbers,
@@ -276,7 +276,7 @@ class ProfileViewController: ChildViewController {
         let task = lambdaInvoker.invokeFunction("handlerDiaFIT", jsonObject: jsonObject)
         task.continue(successBlock: { (task: AWSTask) -> Any? in
             if task.error != nil {
-                print(task.error)
+                print(task.error as Any)
             } else {
                 if task.result != nil {
                     print("Posted at Profile!")
@@ -286,7 +286,7 @@ class ProfileViewController: ChildViewController {
                         self.present(menu, animated: true, completion: nil)
                     }
                 } else {
-                    print("Exception: \(task.exception)")
+                    print("Exception: \(String(describing: task.exception))")
                 }
             }
             return nil
@@ -308,7 +308,7 @@ class ProfileViewController: ChildViewController {
         let task = lambdaInvoker.invokeFunction("handlerDiaFIT", jsonObject: jsonObject);
         task.continue(successBlock: { (task: AWSTask) -> Any? in
             if task.error != nil {
-                print("Error: ", task.error)
+                print("Error: ", task.error as Any)
             }
             if task.result != nil {
                 do {
@@ -385,9 +385,10 @@ class ProfileViewController: ChildViewController {
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
         print("User Signed out")
-        //        defaults.removeObjectForKey("email")
-        //        defaults.removeObjectForKey("rememberMe")
-        //        defaults.removeObjectForKey("loginFirstTime")
+                defaults.removeObject(forKey: "email")
+                defaults.removeObject(forKey: "rememberMe")
+                defaults.removeObject(forKey: "loginFirstTime")
+        defaults.removeObject(forKey: "fitbitAccess")
         defaults.synchronize()
         let storyBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
         let menu = storyBoard.instantiateViewController(withIdentifier: "loginView")
