@@ -125,7 +125,7 @@ class HealthManager {
         // Query HealthKit for most recent glucose
         let glucose = HKSampleQuery(sampleType: sampleType, predicate: glucosePredicate, limit: 0, sortDescriptors: [sortDescriptor]) { (sampleQuery, results, error ) -> Void in
             if(error != nil){
-                print(error)
+                print(error as Any)
             }
             else {
                 completionHandler(results!, nil)

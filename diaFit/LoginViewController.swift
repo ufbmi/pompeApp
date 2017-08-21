@@ -14,7 +14,13 @@ import DLRadioButton
 class LoginViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBOutlet weak var passwordTextField: UITextField!/*{
+        didSet{
+            passwordTextField.delegate = self
+        }
+    }*/
+    
     @IBOutlet weak var passConfTextField: UITextField!
     @IBOutlet weak var newUserButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
@@ -34,6 +40,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         let screenHeight = screenSize.height;
         subViewArea.center = CGPoint(x: screenWidth / 2,
             y: screenHeight / 2);
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
@@ -56,7 +63,15 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true     //*********
+    }
+
     
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
 
     @IBAction func newHere(_ sender: AnyObject) {
         if (!registerSelected) {
@@ -145,10 +160,10 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         let task = lambdaInvoker.invokeFunction("diaFitLogin", jsonObject: jsonObject)
         task.continue(successBlock: { (task: AWSTask) -> Any? in
             if task.error != nil {
-                print("Error: ", task.error)
+                print("Error: ", task.error as Any)
             }
             if((task.exception) != nil) {
-                print("Exception: \(task.exception)" )
+                print("Exception: \(String(describing: task.exception))" )
             }
             if task.result != nil {
                 let login: NSNumber = task.result!.value(forKey: "login") as! NSNumber
@@ -175,7 +190,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 else {
                     self.userDefaults.setValue(self.emailTextField.text,forKey: "email")
                          DispatchQueue.main.async {
-                        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        let _: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                                 self.deviceManager.authorizeFitbit(){(authorized: Bool) in
                                     if authorized {
                                         print("Authorized to FitBit ")
@@ -211,7 +226,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         let task = lambdaInvoker.invokeFunction("diaFitCreateUser", jsonObject: jsonObject)
         task.continue(successBlock: { (task: AWSTask) -> Any? in
             if task.error != nil {
-                print("Error: ", task.error)
+                print("Error: ", task.error as Any)
             }
             if task.result != nil {
                 let success: NSNumber = task.result!.value(forKey: "created") as! NSNumber
@@ -241,7 +256,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 }
             }
             if((task.exception) != nil) {
-                print("Exception: \(task.exception)" )
+                print("Exception: \(String(describing: task.exception))" )
             }
             return nil
         })

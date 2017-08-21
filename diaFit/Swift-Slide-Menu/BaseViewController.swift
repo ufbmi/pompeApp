@@ -20,15 +20,17 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
     
     var objMenu : TableViewMenuController!
     
-    override func viewDidLoad() {
+    override func viewDidLoad() {               /// add mor slide window for weight
         super.viewDidLoad()
-        addChildView("foodLog", titleOfChildren: "Nutrition Log", iconName: "food", storyBoard: "Nutrition")
+        addChildView("foodLog", titleOfChildren: "Nutrition Log", iconName: "Meal26", storyBoard: "Nutrition")        //foodLog is the storyboard ID
         if userDefaults.integer(forKey: "device") == 0 {
-            addChildView("HealthKitLog", titleOfChildren: "HealthKit Activity Log", iconName: "walker-or-runner-sportive-stick-man", storyBoard: "HealthKit")
+            addChildView("HealthKitLog", titleOfChildren: "HealthKit Activity Log", iconName: "Exercise48", storyBoard: "HealthKit")
+            addChildView("weightLog", titleOfChildren: "Weight Log", iconName: "Scale26", storyBoard: "Weight")
         } else if userDefaults.integer(forKey: "device") == 1 {
-            addChildView("fitBitLog", titleOfChildren: "FitBit Activity Log", iconName: "walker-or-runner-sportive-stick-man", storyBoard: "Fitbit")
+            addChildView("fitBitLog", titleOfChildren: "FitBit Activity Log", iconName: "Exercise48", storyBoard: "Fitbit")//Storyboard ID; what is showing on view, the pic, storyBoard neam on the left menu
+            addChildView("weightLog", titleOfChildren: "Weight Log", iconName: "Scale26", storyBoard: "Weight")
         }
-        addChildView("profileViewController", titleOfChildren: "Account", iconName: "iconmonstr-user-19-120", storyBoard: "Profile")
+        addChildView("profileViewController", titleOfChildren: "User Profile", iconName: "User50", storyBoard: "Profile")
         showFirstChild()
         
         //Create containerView that contain child view
@@ -55,7 +57,7 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
     override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.portrait
     }
-    func addSlideMenuButton(){
+    func addSlideMenuButton(){  //****
         
         let navigationBarHeight: CGFloat = self.navigationController!.navigationBar.frame.height
         let btnShowMenu = ZFRippleButton()

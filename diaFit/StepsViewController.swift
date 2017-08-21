@@ -4,6 +4,9 @@ import SwiftCharts
 import AWSCore
 import AWSLambda
 
+
+
+//Stpes when choosing healthKit not Fitbit
 class StepsViewController: UIViewController {
     
     
@@ -58,7 +61,7 @@ class StepsViewController: UIViewController {
             } else {
                 
                 if error != nil {
-                    print(error)
+                    print(error as Any)
                 }
             }
         }
@@ -172,9 +175,9 @@ class StepsViewController: UIViewController {
         
         let yValues = ChartAxisValuesGenerator.generateYAxisValuesWithChartPoints(allChartPoints, minSegmentCount: 5, maxSegmentCount: 20, multiple: 2, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: labelSettings)}, addPaddingSegmentIfEdge: false)
         let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: currentMonth, settings: labelSettings))
-        let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Steps", settings: labelSettings.defaultVertical()))
+        let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Steps2", settings: labelSettings.defaultVertical()))
         let chartFrame = CGRect(x: 10, y: 100, width: screenWidth , height: screenHeight * 0.80)
-        var chartSettings = ChartSettings()
+        let chartSettings = ChartSettings()
         chartSettings.leading = 10
         chartSettings.top = 10
         chartSettings.trailing = 10

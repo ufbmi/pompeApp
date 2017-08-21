@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="GvQ-PC-o0q">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="GvQ-PC-o0q">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Steps View Controller-->
@@ -14,31 +18,34 @@
                         <viewControllerLayoutGuide type="bottom" id="tJg-qa-7jS"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sd2-ZB-ENj">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZO-bc-56z">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZO-bc-56z">
                                 <rect key="frame" x="139" y="75" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="96n-TA-qib">
-                                <rect key="frame" x="0.0" y="64" width="320" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="96n-TA-qib">
+                                <rect key="frame" x="27" y="75" width="320" height="29"/>
                                 <segments>
                                     <segment title="Week"/>
                                     <segment title="Month"/>
                                 </segments>
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="onSegmentedControl:" destination="GvQ-PC-o0q" eventType="valueChanged" id="nZH-As-L6S"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="96n-TA-qib" firstAttribute="leading" secondItem="sd2-ZB-ENj" secondAttribute="leading" id="7eI-b8-vAI"/>
-                            <constraint firstAttribute="trailing" secondItem="96n-TA-qib" secondAttribute="trailing" id="stW-P4-d00"/>
+                            <constraint firstItem="96n-TA-qib" firstAttribute="leading" secondItem="sd2-ZB-ENj" secondAttribute="leading" constant="27" id="7eI-b8-vAI"/>
+                            <constraint firstItem="96n-TA-qib" firstAttribute="top" secondItem="yc9-Tp-MEC" secondAttribute="bottom" constant="19" id="8Cp-Kz-lKq"/>
+                            <constraint firstItem="MZO-bc-56z" firstAttribute="leading" secondItem="sd2-ZB-ENj" secondAttribute="leading" constant="139" id="B0y-eT-4nR"/>
+                            <constraint firstItem="MZO-bc-56z" firstAttribute="top" secondItem="96n-TA-qib" secondAttribute="bottom" constant="8" symbolic="YES" id="WDh-Wt-l8x"/>
+                            <constraint firstAttribute="trailing" secondItem="96n-TA-qib" secondAttribute="trailing" constant="28" id="stW-P4-d00"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ecg-7q-djm">
@@ -63,4 +70,9 @@
             <point key="canvasLocation" x="263" y="-47"/>
         </scene>
     </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
 </document>

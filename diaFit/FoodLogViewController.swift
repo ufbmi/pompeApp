@@ -23,7 +23,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
     @IBOutlet var myTableView: UITableView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var caloriesConsumedLabel: UILabel!
+    @IBOutlet weak var caloriesConsumedLabel: UILabel! //consumed
     @IBOutlet weak var totalProteinLabel: UILabel!
     @IBOutlet weak var totalLipidsLabel: UILabel!
     @IBOutlet weak var totalCarbsLabel: UILabel!
@@ -32,11 +32,11 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
     @IBOutlet weak var caloriesBurnedLabel: UILabel!
     @IBOutlet weak var remainingLabel: UILabel!
     
-    @IBOutlet weak var percentageCarb: UILabel!
+    @IBOutlet weak var percentageCarb: UILabel!//needs %%
+    @IBOutlet weak var percentageFat: UILabel!//needs %
+    @IBOutlet weak var percentageProtein: UILabel!//needs %%
 
-    @IBOutlet weak var percentageFat: UILabel!
     
-    @IBOutlet weak var percentageProtein: UILabel!
     var refreshControl: UIRefreshControl!
     var totalEnergyKCal = 0
     var totalEnergyKJ = 0
@@ -74,26 +74,13 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
     @IBOutlet weak var percentageLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.userDefaults.setValue(1, forKey: "device");
-        tableView.delegate = self
-        tableView.dataSource = self
-        refreshControl  = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(FoodLogViewController.onRefresh), for: UIControlEvents.valueChanged)
-        tableView.insertSubview(refreshControl, at: 0)
-    }
-    
-    
-    
     func drawPieChart( _ Carbs: Int, Fats: Int, Proteins: Int) {
         var views: [String: UIView] = [:]
         let screenSize: CGRect = UIScreen.main.bounds
-        let screenWidth = screenSize.width
-        let screenHeight = screenSize.height
+        _ = screenSize.width      //let screenWidth = screenSize.width
+        _ = screenSize.height   //let screenHeight = screenSize.height
         
         var carbs = Piechart.Slice()
-        
         
         if Carbs == 0 {
             carbs.value = 3
@@ -132,15 +119,15 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
         piechart.title = "Macronutrients"
         piechart.activeSlice = 2
         piechart.slices = [carbs, proteins, fats]
-        let fatsValue = Int(fats.value), carbsValue = Int(carbs.value), proteinsValue = Int(proteins.value)
-        let totalValue = fatsValue + carbsValue + proteinsValue
-        let proteinPercent = Int((proteinsValue/totalValue) * 100)
-        let carbsPercent = Int((carbsValue/totalValue) * 100)
-        let fatsPercent = Int((fatsValue/totalValue) * 100)
+        let fatsValue = fats.value, carbsValue = carbs.value, proteinsValue = proteins.value
+        let totalValue = fatsValue! + carbsValue! + proteinsValue!
+        let proteinPercent = lroundf(Float((proteinsValue!/totalValue) * 100))
+        let carbsPercent = lroundf(Float((carbsValue!/totalValue) * 100))
+        let fatsPercent = lroundf(Float((fatsValue!/totalValue) * 100))
         DispatchQueue.main.async {
-            self.percentageProtein.text = String(proteinPercent) + "%" + " Proteins"
-            self.percentageFat.text = String(fatsPercent) + "%" + " Fats"
-            self.percentageCarb.text = String(carbsPercent) + "%" + " Carbs"
+            self.percentageProtein.text = String(proteinPercent) + "% Proteins"
+            self.percentageFat.text = String(fatsPercent) + "% Fats"
+            self.percentageCarb.text = String(carbsPercent) + "% Carbs"         //text %
         }
         
         piechart.translatesAutoresizingMaskIntoConstraints = false
@@ -151,7 +138,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
     }
     
     func setSubtitle(_ total: CGFloat, slice: Piechart.Slice) -> String {
-        return "\(Int(slice.value / total * 100))% " + slice.text
+        return "\(lroundf(Float(slice.value / total * 100)))% " + slice.text
     }
     
     func setInfo(_ total: CGFloat, slice: Piechart.Slice) -> String {
@@ -200,7 +187,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
         
         
         DispatchQueue.main.async {
-            self.progressBarDisplayer( true)
+            self.progressBarDisplayer(true)
             DispatchQueue.main.async {
                 self.lambdaInvoker()
             }
@@ -212,7 +199,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
     @IBAction func backButton(_ sender: AnyObject) {
         let storyBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
         let menu = storyBoard.instantiateViewController(withIdentifier: "mainMenuNav")
-        present(menu, animated: true, completion: nil)
+        present(menu, animated: true, completion: nil)//present menu
         
     }
     
@@ -287,7 +274,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
             let task = lambdaInvoker.invokeFunction("handlerDiaFIT", jsonObject: jsonObject)
              task.continue(successBlock: { (task: AWSTask) -> Any? in
                 if task.error != nil {
-                    print(task.error)
+                    print(task.error as Any)
                 } else {
                     //delete the table view row
                     DispatchQueue.main.async {
@@ -351,7 +338,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
         let task = lambdaInvoker.invokeFunction("handlerDiaFIT", jsonObject: jsonObject)
         task.continue(successBlock: { (task: AWSTask) -> Any? in
             if task.error != nil {
-                print(task.error)
+                print(task.error as Any)
             } else {
                 if task.result != nil {
                     var nutritionJSON =  JSON(task.result!)
@@ -448,7 +435,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
                         }
                     }
                 } else {
-                    print("Exception: \(task.exception)")
+                    print("Exception: \(String(describing: task.exception))")
                 }
                 
             }
@@ -456,7 +443,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
         })
     }
     
-    func updateCalories(){
+    func updateCalories(){ //update cals num
         let device = self.userDefaults.value(forKey: "device") as! Int
         let data = userDefaults.object(forKey: "user") as? Data
         //this can occur if the user is in a different device even when it has register.
@@ -501,7 +488,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
                 var remaining = ""
                 self.healthManager.getSteps(stepSample!) { (stepCounts, error) -> Void in
                     if( error != nil ) {
-                        print("Error: \(error)")
+                        print("Error: \(String(describing: error))")
                         return
                     }
                     var steps = 0
@@ -559,6 +546,22 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
             targetController.currentDate = segueDate2
         }
     }
+    @IBOutlet weak var logFoodButton: UIButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.userDefaults.setValue(1, forKey: "device");
+        tableView.delegate = self
+        tableView.dataSource = self
+        refreshControl  = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(FoodLogViewController.onRefresh), for: UIControlEvents.valueChanged)
+        tableView.insertSubview(refreshControl, at: 0)
+        logFoodButton.layer.cornerRadius = 8
+        let white = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        logFoodButton.layer.backgroundColor = white.cgColor
+        
+    }
+    
     
     @IBAction func onPrevious(_ sender: AnyObject) {
         dateAddingUnit += (-1)

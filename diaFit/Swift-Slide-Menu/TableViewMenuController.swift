@@ -56,9 +56,9 @@ class TableViewMenuController: UIViewController, UITableViewDataSource, UITableV
     }
     
     //MARK: Animations
-    func animateWhenViewAppear(){
+    func animateWhenViewAppear(){//slide menu apperaing time
         UIView.animate(withDuration: 0.3, animations: { () -> Void in
-            self.btnCloseTableViewMenu.alpha = 0.3
+            self.btnCloseTableViewMenu.alpha = 0.5  // the hidden part below the menu
             self.tableViewMenu.frame = CGRect(x: self.tableViewMenu.bounds.size.width, y: 0, width: self.tableViewMenu.bounds.size.width,height: self.tableViewMenu.bounds.size.height)
             self.tableViewMenu.layoutIfNeeded()
             self.tableViewMenu.flashScrollIndicators()
@@ -74,7 +74,7 @@ class TableViewMenuController: UIViewController, UITableViewDataSource, UITableV
             }, completion: { (finished) -> Void in
                 self.willMove(toParentViewController: nil)
                 self.view.removeFromSuperview()
-                self.removeFromParentViewController()
+                self.removeFromParentViewController() //remove when closing
         })
     }
     //MARK: Method call when user touch btnCloseTableViewMenu (Background)
@@ -83,7 +83,7 @@ class TableViewMenuController: UIViewController, UITableViewDataSource, UITableV
         btnMenu.tag = 0
         //var  animationSpeed : CGFloat = 0.3
         if (self.delegate != nil) {
-            var index = Int32(button.tag)
+            var index = Int32(button.tag)//index for each child view
             if(button == self.btnCloseTableViewMenu){
                 //animationSpeed = 0.3
                 index = -1
@@ -126,11 +126,11 @@ class TableViewMenuController: UIViewController, UITableViewDataSource, UITableV
         cell.backgroundColor = UIColor.clear
         
         cell.img.image = UIImage(named: arrayMenu[(indexPath as NSIndexPath).row]["icon"]!)
-        cell.label.text = arrayMenu[(indexPath as NSIndexPath).row]["title"]!
+        cell.label.text = arrayMenu[(indexPath as NSIndexPath).row]["title"]!//show exactly each tab
         
         return cell
     }
-    
+    //tableview for slide menu
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let btn = UIButton(type: UIButtonType.custom)
         btn.tag = (indexPath as NSIndexPath).row
@@ -139,7 +139,7 @@ class TableViewMenuController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayMenu.count
+        return arrayMenu.count //****arrayMenu, add to this dict
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

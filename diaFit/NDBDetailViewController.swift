@@ -6,6 +6,9 @@
 //  Copyright © 2016 Liang,Franky Z. All rights reserved.
 //
 
+
+//post food portion VC
+
 import UIKit
 import AWSCore
 import AWSLambda
@@ -14,8 +17,8 @@ import AWSLambda
 class NDBDetailViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     @IBOutlet weak var nameLabel: UILabel!
+   // @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var servingTextField: UITextField!
-    
     @IBOutlet weak var numOfServingTextField: UITextField!
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     var dataTask: URLSessionDataTask?
@@ -220,8 +223,10 @@ class NDBDetailViewController: UIViewController, UIPickerViewDataSource, UIPicke
             let targetController = destinationNavigationController.topViewController as! FoodLogViewController
             targetController.segueDateFromNDB = currentDate
         }
-    }
+        
 
+    }
+    
     
     func calculateNutrition() {
         for nutrient in nutritionResults {
@@ -460,12 +465,12 @@ class NDBDetailViewController: UIViewController, UIPickerViewDataSource, UIPicke
         print("GOT HERE")
        task.continue(successBlock: { (task: AWSTask) -> Any? in
             if task.error != nil {
-                print(task.error)
+                print(task.error as Any)
             } else {
                 if task.result != nil {
                     print("Posted! At NDB")
                 } else {
-                    print("Exception: \(task.exception)")
+                    print("Exception: \(String(describing: task.exception))")
                 }
             }
             return nil

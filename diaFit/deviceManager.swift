@@ -17,8 +17,8 @@ class DeviceManager: NSObject {
     var fitBitJsonProfile: AnyObject!
     var fitBitAge = "N/A"
     var fitBitGender = "N/A"
-    var fitBitWeight = "N/A"
-    var fitBitUnits = "N/A"
+    var fitBitWeight = "N/A"        //
+    var fitBitUnits = "N/A"         //
     var fitBitHeight = "N/A"
 
     let oauthswift = OAuth2Swift(
@@ -31,7 +31,7 @@ class DeviceManager: NSObject {
     func authorizeFitbit(_ completion: @escaping (_ result: Bool) -> Void ){
         oauthswift.accessTokenBasicAuthentification = true
         self.userDefaults.setValue(1, forKey: "device");
-        let accessCode = self.userDefaults.string(forKey: "fitbitAccess")
+        _ = self.userDefaults.string(forKey: "fitbitAccess")
   
             oauthswift.accessTokenBasicAuthentification = true
             let state: String = generateState(withLength: 20) as String
@@ -40,7 +40,6 @@ class DeviceManager: NSObject {
                 if (parameters["access_token"] != nil){
                     let token = "Bearer " + (parameters["access_token"]! as! String)
                     self.userDefaults.setValue(token, forKey:"fitbitAccess")
-                    print(self.userDefaults.value(forKey: "fitbitAccess")!)
                     completion (true)
                 } else {
                     completion (false)
@@ -50,8 +49,9 @@ class DeviceManager: NSObject {
      
             })
     }
+   
     
-        
+    // get Step for a particular day
     func getFitBitSteps(_ date:String, completionHandler: @escaping (_ result: Int) -> Void ){
         let accessCode = self.userDefaults.string(forKey: "fitbitAccess")
         var steps = 0
@@ -64,29 +64,29 @@ class DeviceManager: NSObject {
                                               headers: access_token,
                                               success: { (data) in
                                                 if let jsonDict: AnyObject? = try? JSONSerialization.jsonObject(with: data.data, options: []) as AnyObject!{
-                                                    if let dictLevel1 = jsonDict as? [String: Any] {
-                                                        if let arrayLevel2 = dictLevel1["activities-steps"] as? NSArray {
-                                                            let stepsDict: [String: Any] = arrayLevel2[0] as! [String : Any]
+                                                    if let dictLevel1 = jsonDict as? [String: Any] {//level1 is json
+                                                        if let arrayLevel2 = dictLevel1["activities-steps"] as? NSArray {       //a group of {}
+                                                            let stepsDict: [String: Any] = arrayLevel2[0] as! [String : Any]        //[0] is a group of {}
                                                             let stepsString = stepsDict["value"] as? String
-                                                            steps = Int(stepsString!)!
+                                                            steps = Int(stepsString!)!//value is the steps
                                                             completionHandler(steps)
                                                         }
                                                     }
                                                 }
-                }, failure: { error in
-                    print ("ERROR at DeviceManager getFitbitSteps:")
-                    print(error)
-                    self.authorizeFitbit(){(authorized: Bool) in
-                        if authorized {
-                            self.getFitBitSteps(date){(steps: Int) in
-                                completionHandler(steps)
-                            }
-                        }
-                        else {
-                            print("Error: Authorzing to use FITBIT")
+            }, failure: { error in
+                print ("ERROR at DeviceManager getFitbitSteps:")
+                print(error)
+                self.authorizeFitbit(){(authorized: Bool) in
+                    if authorized {
+                        self.getFitBitSteps(date){(steps: Int) in
+                            completionHandler(steps)
                         }
                     }
-
+                    else {
+                        print("Error: Authorzing to use FITBIT")
+                    }
+                }
+                
             })
         }
         else {
@@ -102,12 +102,107 @@ class DeviceManager: NSObject {
             }
         }
     }
+
+    ///*********** for 30 days' entry!
+    func getFitbitSteps(_ completion: @escaping (_ result: AnyObject) -> Void){
+        let accessCode = self.userDefaults.string(forKey: "fitbitAccess")
+        
+        if(accessCode != nil){
+            let access_token: [String: String] = ["Authorization":accessCode!]
+            oauthswift.startAuthorizedRequest("https://api.fitbit.com/1/user/-/activities/steps/date/today/30d.json",//only 7 30 works
+                                              method: OAuthSwiftHTTPRequest.Method.GET,
+                                              parameters: [:],
+                                              headers: access_token,
+                                              success: { (data) in
+                                                let jsonDict: AnyObject! = try? JSONSerialization.jsonObject(with: data.data, options: []) as AnyObject!
+                                                print(jsonDict)
+                                                completion(jsonDict)
+            }, failure: { error in
+                print(error.localizedDescription)
+                
+            })
+        }
+        else {
+            self.authorizeFitbit(){(authorized: Bool) in
+                if authorized {
+                    self.getFitbitSteps({ (steps) in
+                        completion(steps)
+                    })
+                }
+                else {
+                    print("Error: Authorzing to use FITBIT")
+                }
+            }
+        }
+    }
+    //**working on currently
+    func getFitbitWeight(_ completion: @escaping (_ result: AnyObject) -> Void){
+        let accessCode = self.userDefaults.string(forKey: "fitbitAccess")
+        let formatter  = DateFormatter()
+        let calendar = Calendar.current
+        formatter.dateFormat = "yyyy-MM-dd"
+        let date = formatter.string(from: (calendar as NSCalendar).date(byAdding: [.day],value: 0,to: Date(),options: [])!)
+        print("today is "+date)
+        if(accessCode != nil){
+            
+            let access_token: [String: String] = ["Authorization":accessCode!]
+            oauthswift.startAuthorizedRequest("https://api.fitbit.com/1/user/-/body/log/weight/date/"+date+"/30d.json",                                                method: OAuthSwiftHTTPRequest.Method.GET,
+                                              parameters: [:],
+                                              headers: access_token,
+                                              success: { (data) in
+                                                let jsonDict: AnyObject! = try? JSONSerialization.jsonObject(with: data.data, options: []) as AnyObject!
+                                                print(jsonDict)
+                                                completion(jsonDict)
+            }, failure: { error in
+                print(error.localizedDescription)
+            })
+        }
+        else {
+            self.authorizeFitbit(){(authorized: Bool) in
+                if authorized {
+                    self.getFitbitWeight({ (weight) in
+                        completion(weight)
+                    })
+                }
+                else {
+                    print("Error: Authorzing to use FITBIT")
+                }
+            }
+        }
+    }
+    
+    // fot healthkit not fitBit
+    func healthKitGetWeight(_ completionHandler: @escaping (_ result: String) -> Void) {
+        var weight: HKQuantitySample?
+        var weightString = "N/A"
+        // Create the HKSample for Weight.
+        let weightSample = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)
+        // Call HealthKitManager's getSample() method to get the user's height.
+        self.healthManager.getBodyMass(weightSample!, completionHandler: { (userWeight, error) -> Void in
+            if( error != nil ) {
+                NSLog("Error at HKWeight: \(String(describing: error?.localizedDescription))")
+                return
+            }
+            var weightInt: Int?
+            weight = userWeight as? HKQuantitySample
+            if let pounds = weight?.quantity.doubleValue(for: HKUnit.pound()) {
+                weightInt = Int(pounds)
+            }
+            if(weightInt != nil){
+                weightString = String(weightInt!)
+            }
+            completionHandler(weightString)
+            
+        })
+    }
+    
+    
     
     func getUserProfile(_ completionHandler: @escaping (_ result: Bool) -> Void ){
         let accessCode = self.userDefaults.string(forKey: "fitbitAccess")
         if(accessCode != nil){
             let access_token: [String: String] = ["Authorization":accessCode!]
-            let url = "https://api.fitbit.com/1/user/-/profile.json"
+            let url = "https://api.fitbit.com/1/user/-/profile.json"    //
             oauthswift.startAuthorizedRequest(url,
                                           method: OAuthSwiftHTTPRequest.Method.GET,
                                           parameters: [:],
@@ -147,6 +242,23 @@ class DeviceManager: NSObject {
         }
     }
     
+    func getFitBitWeight()->String{
+        if(fitBitUnits != "N/A"){
+            if(fitBitUnits == "en_US"){
+                let weightDouble = Double(fitBitWeight)
+                return String(weightDouble! * 2.2)
+                
+            }
+            else {
+                return fitBitWeight
+            }
+        }
+        else {
+            return fitBitWeight
+        }
+    }
+
+    
     func getFitBitAge()->String{
         return fitBitAge
     }
@@ -172,21 +284,10 @@ class DeviceManager: NSObject {
         }
     }
     
-    func getFitBitWeight()->String{
-        if(fitBitUnits != "N/A"){
-            if(fitBitUnits == "en_US"){
-                let weightDouble = Double(fitBitWeight)
-                return String(weightDouble! * 2.2)
-                
-            }
-            else {
-                return fitBitWeight
-            }
-        }
-        else {
-            return fitBitWeight
-        }
-    }
+    
+    
+    
+    //ALL BELOW ARE USING THE HEALTHKIT OPs
     
     func healthKitGetAge() -> String{
         var result = "N/A"
@@ -236,35 +337,7 @@ class DeviceManager: NSObject {
             }
         }
     }
-    
-    func getFitbitSteps(_ completion: @escaping (_ result: AnyObject) -> Void){
-        let accessCode = self.userDefaults.string(forKey: "fitbitAccess")
-        if(accessCode != nil){
-            let access_token: [String: String] = ["Authorization":accessCode!]
-            oauthswift.startAuthorizedRequest("https://api.fitbit.com/1/user/-/activities/steps/date/today/30d.json",
-                                              method: OAuthSwiftHTTPRequest.Method.GET,
-                                              parameters: [:],
-                                              headers: access_token,
-                                              success: { (data) in
-                                                let jsonDict: AnyObject! = try? JSONSerialization.jsonObject(with: data.data, options: []) as AnyObject!
-                                                completion(jsonDict)
-            }, failure: { error in
-                print(error.localizedDescription)
-            })
-        }
-        else {
-            self.authorizeFitbit(){(authorized: Bool) in
-                if authorized {
-                    self.getFitbitSteps({ (steps) in
-                        completion(steps)
-                    })
-                }
-                else {
-                    print("Error: Authorzing to use FITBIT")
-                }
-            }
-        }
-    }
+
     
     func healthKitGetHeight(_ completionHandler: @escaping (_ result: String) -> Void) {
         var height: HKQuantitySample?
@@ -272,7 +345,7 @@ class DeviceManager: NSObject {
         // Call HealthKitManager's getSample() method to get the user's height.
         self.healthManager.getHeight(heightSample!, completionHandler: { (userHeight, error) -> Void in
             if( error != nil ) {
-                NSLog("Error at HKGetHeight: \(error)")
+                NSLog("Error at HKGetHeight: \(String(describing: error))")
             }
             var heightString = "N/A"
             height = userHeight as? HKQuantitySample
@@ -293,7 +366,7 @@ class DeviceManager: NSObject {
             let glucoseSample = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bloodGlucose)
             self.healthManager.getGlucose(365, sampleType: glucoseSample!, completionHandler: { (glucoseValues, error) -> Void in
                 if( error != nil ) {
-                    NSLog("Error at healthKitGetGlucose: \(error?.localizedDescription)")
+                    NSLog("Error at healthKitGetGlucose: \(String(describing: error?.localizedDescription))")
                 }
                 else {
                     let result = glucoseValues.isEmpty
@@ -308,7 +381,7 @@ class DeviceManager: NSObject {
             // Call HealthKitManager's getSample() method to get the user's glucose.
             self.healthManager.getGlucose(days, sampleType: glucoseSample!, completionHandler: { (glucoseValues, error) -> Void in
                 if( error != nil ) {
-                    NSLog("Error at healthKitGetGlucose: \(error?.localizedDescription)")
+                    NSLog("Error at healthKitGetGlucose: \(String(describing: error?.localizedDescription))")
                 } else {
                     
                 }
@@ -344,30 +417,6 @@ class DeviceManager: NSObject {
                 
             })
     }
-    
 
-func healthKitGetWeight(_ completionHandler: @escaping (_ result: String) -> Void) {
-    var weight: HKQuantitySample?
-    var weightString = "N/A"
-    // Create the HKSample for Weight.
-    let weightSample = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)
-    // Call HealthKitManager's getSample() method to get the user's height.
-    self.healthManager.getBodyMass(weightSample!, completionHandler: { (userWeight, error) -> Void in
-        if( error != nil ) {
-            NSLog("Error at HKWeight: \(error?.localizedDescription)")
-            return
-        }
-        var weightInt: Int?
-        weight = userWeight as? HKQuantitySample
-        if let pounds = weight?.quantity.doubleValue(for: HKUnit.pound()) {
-            weightInt = Int(pounds)
-        }
-        if(weightInt != nil){
-            weightString = String(weightInt!)
-        }
-        completionHandler(weightString)
-        
-    })
-}
 
 }
