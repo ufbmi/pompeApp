@@ -10,13 +10,14 @@
 
 class Food {
     var name: String
-    var group: String
     var ndbno: String
+    var brandName: String
     
-    init(name: String, group: String, ndbno: String) {
+    init(name: String, ndbno: String, brandName: String) {
         self.name = name
-        self.group = group
         self.ndbno = ndbno
+        self.brandName = brandName
     }
+
 
 }

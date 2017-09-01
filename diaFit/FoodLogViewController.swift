@@ -43,19 +43,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
     var totalProtein = 0
     var totalLipids = 0
     var totalCarbs = 0
-    var totalDietaryFiber = 0
-    var totalSugars = 0
-    var totalCalcium = 0
-    var totalIron = 0
-    var totalPotassium = 0
-    var totalSodium = 0
-    var totalVitAIU = 0
-    var totalVitARAE = 0
-    var totalVitC = 0
-    var totalVitB6 = 0
-    var totalCholesterol = 0
-    var totalTransFat = 0
-    var totalSaturatedFat = 0
+    
     var dateAddingUnit = 0
     var caloriesBurned = 0
     var segueDate1 = ""
@@ -73,6 +61,41 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
     
     @IBOutlet weak var percentageLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
+    
+    @IBOutlet weak var logFoodButton: UIButton!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.userDefaults.setValue(1, forKey: "device");
+        tableView.delegate = self
+        tableView.dataSource = self
+        refreshControl  = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(FoodLogViewController.onRefresh), for: UIControlEvents.valueChanged)
+        tableView.insertSubview(refreshControl, at: 0)
+        logFoodButton.layer.cornerRadius = 8
+        //        log food button UI config
+        let notWhite = UIColor(red:0.36, green:0.75, blue:0.73, alpha:1.0)
+        logFoodButton.layer.backgroundColor = notWhite.cgColor
+        logFoodButton.layer.cornerRadius = 5
+        logFoodButton.layer.borderWidth = 1
+        logFoodButton.layer.borderColor = UIColor.white.cgColor
+        logFoodButton.titleLabel!.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 21)
+        
+        //    ALL labels config
+        dateLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 22)
+        //        digits
+        caloriesConsumedLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 15)
+        caloriesBurnedLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 15)
+        remainingLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 15)
+        //        right
+        percentageCarb.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 15)
+        percentageFat.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 15)
+        percentageProtein.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 15)
+        percentageLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 11)
+        
+    }
+
     
     func drawPieChart( _ Carbs: Int, Fats: Int, Proteins: Int) {
         var views: [String: UIView] = [:]
@@ -245,6 +268,14 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
         let food = currentFoods[(indexPath as NSIndexPath).row]
         cell.foodNameLabel.text = food.foodName
         cell.numberServingLabel.text = food.inputServing
+        
+        cell.calLabel.text = food.energyKCal+"cals"
+        cell.foodNameLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 19)
+        cell.calLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 17)
+        
+        cell.numberServingLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 17)
+
+        
         self.tableView.flashScrollIndicators()
         return cell
         
@@ -298,8 +329,6 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
         self.totalProtein = 0
         self.totalLipids = 0
         self.totalCarbs = 0
-        self.totalSugars = 0
-        self.totalDietaryFiber = 0
         self.totalEnergyKCal = 0
         self.caloriesBurned = 0
         let calendar = Calendar.current
@@ -352,67 +381,29 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
                             let compareDateString = dateFormatter.string(from: currentDateFromAWS!)
                             if compareDateString == currentDate {
                                 DispatchQueue.main.async {
-                                    self.totalCalcium += item.1[":calcium"].intValue
-                                    let currFoodTotalCalcium = String(item.1[":calcium"].intValue)
                                     
                                     self.totalCarbs += item.1[":carbohydrates"].intValue
                                     let currFoodTotalCarbs = String(item.1[":carbohydrates"].intValue)
                                     
-                                    self.totalCholesterol += item.1[":cholesterol"].intValue
-                                    let currFoodTotalCholesterol = String(item.1[":cholesterol"].intValue)
-                                    
-                                    self.totalDietaryFiber += item.1[":dietaryFiber"].intValue
-                                    let currFoodTotalDietaryFiber = String(item.1[":dietaryFiber"].intValue)
                                     
                                     self.totalEnergyKCal += item.1[":energyKCal"].intValue
                                     let currFoodTotalKCal = String(item.1[":energyKCal"].intValue)
                                     
-                                    self.totalEnergyKJ += item.1[":energyKJ"].intValue
-                                    let currFoodTotalKJ = String(item.1[":energyKJ"].intValue)
-                                    
-                                    self.totalIron += item.1[":iron"].intValue
-                                    let currFoodTotalIron = String(item.1[":iron"].intValue)
-                                    
                                     self.totalLipids += item.1[":lipids"].intValue
                                     let currFoodTotalLipids = String(item.1[":lipids"].intValue)
                                     
-                                    self.totalPotassium += item.1[":potassium"].intValue
-                                    let currFoodTotalPotassium = String(item.1[":potassium"].intValue)
                                     
                                     self.totalProtein += item.1[":protein"].intValue
                                     let currFoodTotalProtein = String(item.1[":protein"].intValue)
                                     
-                                    self.totalSaturatedFat += item.1[":saturated_fat"].intValue
-                                    let currFoodTotalSaturatedFat = String(item.1[":saturated_fat"].intValue)
-                                    
-                                    self.totalSodium += item.1[":sodium"].intValue
-                                    let currFoodTotalSodium = String(item.1[":sodium"].intValue)
-                                    
-                                    self.totalSugars += item.1[":totalSugars"].intValue
-                                    let currFoodTotalSugars = String(item.1[":totalSugars"].intValue)
-                                    
-                                    self.totalTransFat += item.1[":transFat"].intValue
-                                    let currFoodTotalTransFat = String(item.1[":transFat"].intValue)
-                                    
-                                    self.totalVitAIU += item.1[":vitAIU"].intValue
-                                    let currFoodTotalVitAIU = String(item.1[":vitAIU"].intValue)
-                                    
-                                    self.totalVitARAE += item.1[":vitARAE"].intValue
-                                    let currFoodTotalVitARAE = String(item.1[":vitARAE"].intValue)
-                                    
-                                    self.totalVitC += item.1["vitC"].intValue
-                                    let currFoodTotalVitC = String(item.1["vitC"].intValue)
-                                    
-                                    self.totalVitB6 += item.1["vitB6"].intValue
-                                    let currFoodTotalVitB6 = String(item.1["vitB6"].intValue)
                                     
                                     let currFoodName = item.1[":food_name"].stringValue
                                     let currFoodNDBNO = String(item.1[":food_ndbno"].intValue)
                                     let currFoodDate = item.1[":date"].stringValue
-                                    let userInputServing = String(item.1[":user_input_serving"].intValue)
-
+                                    let userInputServing = String(item.1[":user_input_serving"].doubleValue)
+                                    
                                     let userPickedServing = item.1[":user_picked_serving"].stringValue
-                                    foodFromAWS.append(ReturnedFood(foodName: currFoodName, foodNDBNO: currFoodNDBNO, pickedServing: userPickedServing, inputServing: userInputServing, energyKJ: currFoodTotalKJ, energyKCal: currFoodTotalKCal, protein: currFoodTotalProtein, lipids: currFoodTotalLipids, carbohydrates: currFoodTotalCarbs, dietaryFiber: currFoodTotalDietaryFiber, totalSugars: currFoodTotalSugars, calcium: currFoodTotalCalcium, iron: currFoodTotalIron, potassium: currFoodTotalPotassium, sodium: currFoodTotalSodium, vitAIU: currFoodTotalVitAIU, vitARAE: currFoodTotalVitARAE, vitC: currFoodTotalVitC, vitB6: currFoodTotalVitB6, cholesterol: currFoodTotalCholesterol, transFat: currFoodTotalTransFat, saturatedFat: currFoodTotalSaturatedFat, date: currFoodDate))
+                                    foodFromAWS.append(ReturnedFood(foodName: currFoodName, foodNDBNO: currFoodNDBNO, pickedServing: userPickedServing, inputServing: userInputServing, energyKCal: currFoodTotalKCal, protein: currFoodTotalProtein, lipids: currFoodTotalLipids, carbohydrates: currFoodTotalCarbs, date: currFoodDate))
                                 }
                             }
                         }
@@ -423,14 +414,9 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
                         self.myTableView.reloadData()
                         self.tableView.setContentOffset(CGPoint.zero, animated: false)
                         self.caloriesConsumedLabel.text = String(self.totalEnergyKCal)
-                        self.totalProteinLabel.text = String(self.totalProtein) + "g"
-                        self.totalLipidsLabel.text = String(self.totalLipids) + "g"
-                        self.totalCarbsLabel.text = String(self.totalCarbs) + "g"
-                        self.totalSugarsLabel.text = String(self.totalSugars) + "g"
-                        self.totalFibersLabel.text = String(self.totalDietaryFiber) + "g"
-                            self.updateCalories()
+                        self.updateCalories()
                         DispatchQueue.main.async {
-                        self.messageFrame.removeFromSuperview()
+                            self.messageFrame.removeFromSuperview()
                             self.drawPieChart(self.totalCarbs,Fats: self.totalLipids,Proteins: self.totalProtein)
                         }
                     }
@@ -546,21 +532,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
             targetController.currentDate = segueDate2
         }
     }
-    @IBOutlet weak var logFoodButton: UIButton!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.userDefaults.setValue(1, forKey: "device");
-        tableView.delegate = self
-        tableView.dataSource = self
-        refreshControl  = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(FoodLogViewController.onRefresh), for: UIControlEvents.valueChanged)
-        tableView.insertSubview(refreshControl, at: 0)
-        logFoodButton.layer.cornerRadius = 8
-        let white = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        logFoodButton.layer.backgroundColor = white.cgColor
-        
-    }
+
     
     
     @IBAction func onPrevious(_ sender: AnyObject) {

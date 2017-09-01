@@ -11,17 +11,22 @@ import UIKit
 
 class Nutrition {
     var measures: [Serving]
-    var nutrientId: String
-    var nutrientName: String
-    var unit: String
-    var value: String
-    init(measures: [Serving], nutrientId: String, nutrientName: String, unit: String, value: String) {
+    var foodName: String
+    var energyKCal: Double
+    var protein: Double
+    var lipids: Double
+    var carbohydrates: Double
+    
+    init(measures: [Serving], foodName: String, energyKCal: Double, protein: Double, lipids: Double, carbohydrates:Double ) {
         self.measures = measures
-        self.nutrientId = nutrientId
-        self.nutrientName = nutrientName
-        self.unit = unit
-        self.value = value
+        self.foodName = foodName
+        self.energyKCal = energyKCal
+        self.protein = protein
+        self.lipids = lipids
+        self.carbohydrates = carbohydrates
+        
     }
+
 }
 
 

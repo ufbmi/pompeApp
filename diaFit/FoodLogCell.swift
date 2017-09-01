@@ -23,6 +23,7 @@ class FoodLogCell: UITableViewCell {
     */
     @IBOutlet weak var foodNameLabel: UILabel!
     @IBOutlet weak var numberServingLabel: UILabel!
+    @IBOutlet weak var calLabel: UILabel!
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

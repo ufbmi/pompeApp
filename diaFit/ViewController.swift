@@ -52,31 +52,37 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
         searchResults.removeAll()
         do {
             if let dataInput: Data = data, let jsonParsed = try? JSONSerialization.jsonObject(with: dataInput, options:JSONSerialization.ReadingOptions(rawValue:0)) {
+                print("json results from Nutritionix\(jsonParsed)")
                 if let dictLevel1 = jsonParsed as? [String: Any] {
-                    if let dictLevel2 = dictLevel1["list"] as? [String: Any] {
-                        if let arrayLevel3 = dictLevel2["item"] as? NSArray {
-                            for foodSet in arrayLevel3 {
-                                let food: [String: Any] = foodSet as! [String : Any]
-                                let name = food["name"] as? String
-                                let group = food["group"] as? String
-                                let ndbno = food["ndbno"] as? String
-                                searchResults.append(Food(name: name!, group: group!, ndbno: ndbno!))
+                    if let foodArr = dictLevel1["hits"] as? NSArray {
+                        print("Num of results is \(foodArr.count)")
+                        
+                        for foodSet in foodArr {
+                            if let foodMessyDict = foodSet as? [String : Any]{
+                                if let foodDict = foodMessyDict["fields"] as? [String:Any]{
+                                    let name = foodDict["item_name"] as? String
+                                    let ndbno = foodDict["item_id"] as Any
+                                    var brandName = foodDict["brand_name"] as? String
+                                    if(brandName == "USDA"){
+                                        brandName = ""
+                                    }
+                                    searchResults.append(Food(name: name!, ndbno: ndbno as! String, brandName: brandName!))
+                                }else {
+                                    print("Error: search view controller, foodDict ")
+                                }
                             }
                         }
-                        else {
-                            print("Error: search view controller, arrayLevel3")
-                        }
-                    }
-                    else {
+                    }else {
                         print("Error: search view controller, dictLevel2")
                     }
+                    
                 }
                 else {
                     print("Error: search view controller, dictLevel1")
                 }
-            }
-            else {
-                print("Error: search view controller, serialization")
+                
+            }else {
+                print("Error: search view controller, dictLevel1")
             }
         }
         DispatchQueue.main.async {
@@ -96,13 +102,15 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "FoodCell", for: indexPath) as! FoodCell
         let food = searchResults[(indexPath as NSIndexPath).row]
         // Configure food name labels
-        cell.foodLabel.text = food.name
+        cell.foodLabel.text = food.name + " " + food.brandName
+        cell.foodLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 17)
         return cell
     }
     
     func dismissKeyboard() {
         searchBar.resignFirstResponder()
     }
+    
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         dismissKeyboard()
@@ -114,8 +122,10 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let expectedCharSet = CharacterSet.urlQueryAllowed
         let searchText = searchBar.text!.addingPercentEncoding(withAllowedCharacters: expectedCharSet)!
-        let apiKey = "1ADB1YidG74qvv8NbqPxUVOcZjyRZhtpFURGEyIE"
-        let url = URL(string:"https://api.nal.usda.gov/ndb/search/?format=json&q=\(searchText)&sort=n&max=25&offset=0&api_key=\(apiKey)")
+        let id = "ff35e5bb"
+        let apiKey = "ca6076d34d452bfb106b7d179b31d420"
+        let url = URL(string:"https://api.nutritionix.com/v1_1/search/\(searchText)?results=0%3A30&fields=brand_name%2Citem_name%2Citem_id%2Cnf_serving_size_unit%2Cnf_serving_size_qty%2Cbrand_name%2Cnf_total_carbohydrate%2Cnf_calories%2Cnf_protein%2Cnf_total_fat&appId=\(id)&appKey=\(apiKey)")
+        
         dataTask = defaultSession.dataTask(with: url!, completionHandler: {
             data, response, error in
             DispatchQueue.main.async {
@@ -128,10 +138,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
                     self.updateSearchResults(data)
                 }
             }
-        }) 
+        })
         dataTask?.resume()
     }
-    
     
     @IBAction func onCancel(_ sender: AnyObject) {
         let storyBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)

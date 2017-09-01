@@ -11,13 +11,9 @@ import UIKit
 
 class Serving {
     var label: String
-    var eqv: Double
     var qty: Double
-    var value: String
-    init(label: String, eqv: Double, qty: Double, value: String) {
+    init(label: String, qty: Double) {
         self.label = label
-        self.eqv = eqv
         self.qty = qty
-        self.value = value
     }
 }
