@@ -107,7 +107,6 @@ class User: NSObject, NSCoding {
             let aVar = 5.0 * Double(self.age)! as Double
             calories =  wVar + hVar - aVar - 161.0
         }
-        print(calories)
         return calories
     }
     
