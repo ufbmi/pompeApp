@@ -242,10 +242,10 @@ class ProfileViewController: ChildViewController {
             arn = String(describing: userDefaults.object(forKey: "endpointArn")!)
         }
         var gender = -1
-        if(genderWritten == "Male"){
+        if(genderWritten == "Male" || genderWritten == "MALE"){
             gender = 0
         }
-        else if(genderWritten == "Female"){
+        else if(genderWritten == "Female" || genderWritten == "FEMALE"){
              gender = 1
         }
         let userProfile =  User(age: ageWritten, height: heightWritten, weight: weightWritten, gender: gender, metric: self.metric)
