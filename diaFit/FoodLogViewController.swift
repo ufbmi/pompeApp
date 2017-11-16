@@ -85,7 +85,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
         logFoodButton.titleLabel!.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 21)
         
         //    ALL labels config
-        dateLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 22)
+        dateLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 18)
         //        digits
         caloriesConsumedLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 15)
         caloriesBurnedLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 15)
