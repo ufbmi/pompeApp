@@ -29,6 +29,10 @@ class ProfileViewController: ChildViewController {
     var weightNumbers: [Int] = []
     var ageNumbers:[Int] = []
     var metric: Bool = false
+    // This PAL is for the User model to calculate calories, for which the mapped values are below: (But not for the database)
+    // We want to store directly the text / discription into the db
+    var PAL: Double = 1.0
+    let palMap:[Double] = [1.4, 1.6, 1.8, 2.0]
     
     let userDefaults = UserDefaults.standard
     
@@ -41,7 +45,7 @@ class ProfileViewController: ChildViewController {
     @IBOutlet weak var onAge: UIButton!
     @IBOutlet weak var onHeight: UIButton!
     @IBOutlet weak var onWeight: UIButton!
-    
+    @IBOutlet weak var onPhysicalActivity: UIButton!
     
     var scrollView: UIScrollView!
     
@@ -132,6 +136,21 @@ class ProfileViewController: ChildViewController {
         
     }
     
+    @IBAction func physicalActivityLevel(_ sender: Any) {
+        ActionSheetMultipleStringPicker.show(withTitle: "Daily Physical Activity", rows: [
+            ["Minimal physical activity", // (1.4)
+                "Moderate physical activity", // (1.6)
+                "Strenuous physical activity", // (1.8)
+                "Elite or professional athlete"], // (2.0)
+            ], initialSelection: [0], doneBlock: {
+                picker, values, indexes in
+                // Get the index in which user selected and mapped the pal value for calculating the calories.
+                self.PAL = self.palMap[values![0] as! Int]
+                let arrayRows = indexes as! NSArray
+                self.onPhysicalActivity.setTitle(arrayRows[0] as? String, for: UIControlState())
+                return
+        }, cancel: { ActionMultipleStringCancelBlock in return }, origin: onPhysicalActivity)
+    }
     
     @IBAction func onRace(_ sender: AnyObject) {
         ActionSheetMultipleStringPicker.show(withTitle: "Pick your race", rows: [
@@ -236,6 +255,8 @@ class ProfileViewController: ChildViewController {
         let familyResponse = onFamilyHistory.titleLabel!.text!
         let maritalResponse = onMaritalStatus.titleLabel!.text!
         let employmentResponse = onEmploymentStatus.titleLabel!.text!
+        let palText = onPhysicalActivity.titleLabel!.text!
+
         let email = self.userDefaults.value(forKey: "email") as! String
         var arn = "NULL"
         if userDefaults.object(forKey: "endpointArn") != nil {
@@ -248,14 +269,16 @@ class ProfileViewController: ChildViewController {
         else if(genderWritten == "Female" || genderWritten == "FEMALE"){
              gender = 1
         }
-        let userProfile =  User(age: ageWritten, height: heightWritten, weight: weightWritten, gender: gender, metric: self.metric)
+        // Here we pass the PAL into the User constructer to pass the pal value.
+        let userProfile = User(age: ageWritten, height: heightWritten, weight: weightWritten, gender: gender, pal: self.PAL, metric: self.metric)
         userDefaults.set(NSKeyedArchiver.archivedData(withRootObject: userProfile!), forKey: "user")
+        
         let lambdaInvoker = AWSLambdaInvoker.default()
         let jsonObject: [String: Any] = [
             "TableName":  "diaFitUsers" as AnyObject,
             "operation": "update" as AnyObject ,
             "Key": ["email": email],
-            "UpdateExpression": "set age = :age, height = :height, weight = :weight, gender = :gender, firstTimeUser = :firstTimeUser, race = :race, education = :education, familyHistory = :familyHistory, marital = :marital, employment = :employment, arn = :arn, metric = :metric",
+            "UpdateExpression": "set age = :age, height = :height, weight = :weight, gender = :gender, firstTimeUser = :firstTimeUser, race = :race, education = :education, familyHistory = :familyHistory, marital = :marital, employment = :employment, arn = :arn, metric = :metric, physicalActivityLevel = :physicalActivityLevel",
             "ExpressionAttributeValues" :
                 [
                     ":age" : ageWritten,
@@ -269,7 +292,8 @@ class ProfileViewController: ChildViewController {
                     ":employment" : employmentResponse,
                     ":firstTimeUser" : "false",
                     ":arn" : arn,
-                    ":metric": self.metric
+                    ":metric": self.metric,
+                    ":physicalActivityLevel": palText
             ],
             "ReturnValues": "UPDATED_NEW"
         ]
@@ -364,10 +388,11 @@ class ProfileViewController: ChildViewController {
                             self.onGender.setTitle(listofattributes["gender"] as? String, for:UIControlState.normal)
                             self.onHeight.setTitle(listofattributes["height"] as? String, for: UIControlState.normal)
                             self.raceButton.setTitle(listofattributes["race"] as? String, for: UIControlState.normal)
-                             self.onEducationStatus.setTitle(listofattributes["education"] as? String, for: UIControlState.normal)
+                            self.onEducationStatus.setTitle(listofattributes["education"] as? String, for: UIControlState.normal)
                             self.onEmploymentStatus.setTitle(listofattributes["employment"] as? String, for: UIControlState.normal)
                             self.onMaritalStatus.setTitle(listofattributes["marital"] as? String, for: UIControlState.normal)
                             self.onFamilyHistory.setTitle(listofattributes["familyHistory"] as? String, for: UIControlState.normal)
+                            self.onPhysicalActivity.setTitle(listofattributes["physicalActivityLevel"] as? String, for: UIControlState.normal)
                             if let metric = listofattributes["metric"] {
                                 self.metric = (metric as? Bool)!
                             }
