@@ -57,17 +57,19 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
     override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.portrait
     }
-    func addSlideMenuButton(){  //****
-        
-        let navigationBarHeight: CGFloat = self.navigationController!.navigationBar.frame.height
-        let btnShowMenu = ZFRippleButton()
-        btnShowMenu.alpha = 0
-        btnShowMenu.setImage(self.defaultMenuImage(), for: UIControlState())
-        btnShowMenu.setImage(self.defaultMenuImage(), for: UIControlState.highlighted)
-        btnShowMenu.frame = CGRect(x: 0, y: 0, width: navigationBarHeight, height: navigationBarHeight)
-        btnShowMenu.addTarget(self, action: #selector(BaseViewController.onSlideMenuButtonPressed(_:)), for: UIControlEvents.touchUpInside)
-        let customBarItem = UIBarButtonItem(customView: btnShowMenu)
-        self.navigationItem.leftBarButtonItem = customBarItem;
+    func addSlideMenuButton(){
+    let navigationBarHeight: CGFloat = self.navigationController!.navigationBar.frame.height
+    let btnShowMenu = ZFRippleButton()
+    btnShowMenu.alpha = 0
+    btnShowMenu.setImage(self.defaultMenuImage(), for: UIControlState())
+    btnShowMenu.setImage(self.defaultMenuImage(), for: UIControlState.highlighted)
+    btnShowMenu.frame = CGRect(x: 0, y:0, width: navigationBarHeight, height: navigationBarHeight)
+    btnShowMenu.addTarget(self, action: #selector(BaseViewController.onSlideMenuButtonPressed(_:)), for: UIControlEvents.touchUpInside)
+    //let customBarItem = UIBarButtonItem(customView: btnShowMenu)
+    
+    let menu = UIBarButtonItem(title: "Menu", style: .plain, target: self, action: #selector(BaseViewController.onSlideMenuButtonPressed(_:)) )
+    
+    navigationItem.leftBarButtonItem = menu
     }
     
     func defaultMenuImage() -> UIImage {

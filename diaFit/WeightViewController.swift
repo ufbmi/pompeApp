@@ -138,13 +138,13 @@ class WeightViewController: UIViewController{
         let labelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 10))
         let allChartPoints = chartPoints
         let xValues: [ChartAxisValue] = (NSOrderedSet(array: allChartPoints).array as! [ChartPoint]).map{$0.x}
-        let yValues = ChartAxisValuesGenerator.generateYAxisValuesWithChartPoints(allChartPoints, minSegmentCount: 5, maxSegmentCount: 20, multiple: 2, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: labelSettings)}, addPaddingSegmentIfEdge: false)
-        let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: currentMonth, settings: labelSettings))
-        let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Your Weight", settings: labelSettings.defaultVertical()))
+        let yValues = ChartAxisValuesStaticGenerator.generateYAxisValuesWithChartPoints(allChartPoints, minSegmentCount: 5, maxSegmentCount: 20, multiple: 2, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: labelSettings)}, addPaddingSegmentIfEdge: false)
         
-        //position and color of the chart
+        
+        let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: currentMonth, settings: labelSettings))
+        let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Your Steps", settings: labelSettings.defaultVertical()))
         let chartFrame = CGRect(x: 5, y: 100, width: screenWidth , height: screenHeight * 0.78)
-        let chartSettings = ChartSettings()
+        var chartSettings = ChartSettings()
         chartSettings.leading = 10
         chartSettings.top = 10
         chartSettings.trailing = 10
@@ -158,11 +158,14 @@ class WeightViewController: UIViewController{
         chartSettings.trailing = 20
         
         let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
-        let (xAxis, yAxis, innerFrame) = (coordsSpace.xAxis, coordsSpace.yAxis, coordsSpace.chartInnerFrame)
-        let c1 = UIColor(red: 0.2, green: 0.6, blue: 0.8, alpha: 0.7)
-        let chartPointsLayer = ChartPointsAreaLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, chartPoints: chartPoints, areaColor: c1, animDuration: 2, animDelay: 0, addContainerPoints: true)
+        let (xAxis, yAxis) = (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer)
+        
         let lineModel = ChartLineModel( chartPoints: chartPoints, lineColor: UIColor.black, animDuration: 1, animDelay: 0)
-        let chartPointsLineLayer = ChartPointsLineLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, lineModels: [lineModel])
+        let chartPointsLayer = ChartPointsLineLayer<ChartPoint>(xAxis: xAxis.axis, yAxis: yAxis.axis, lineModels: [lineModel])
+        
+        //let chartPointsLayer = ChartPointsAreaLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, chartPoints: chartPoints, areaColor: c1, animDuration: 2, animDelay: 0, addContainerPoints: true)
+        
+        let chartPointsLineLayer = ChartPointsLineLayer(xAxis: xAxis.axis, yAxis: yAxis.axis, lineModels: [lineModel])
         
         let circleViewGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsLayer, chart: Chart) -> UIView? in
             let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 11)
@@ -172,14 +175,14 @@ class WeightViewController: UIViewController{
             circleView.borderColor = UIColor.blue
             return circleView
         }
-        
         let itemsDelay: Float = 0.08
-        let chartPointsCircleLayer = ChartPointsViewsLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, chartPoints: chartPoints, viewGenerator: circleViewGenerator, displayDelay: 0.9, delayBetweenItems: itemsDelay)
+        let chartPointsCircleLayer = ChartPointsViewsLayer(xAxis: xAxis.axis, yAxis: yAxis.axis, chartPoints: chartPoints, viewGenerator: circleViewGenerator, displayDelay: 0.9, delayBetweenItems: itemsDelay)
         let settings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.black, linesWidth: 0.1)
-        let guidelinesLayer = ChartGuideLinesDottedLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, settings: settings)
+        let guidelinesLayer = ChartGuideLinesDottedLayer(xAxisLayer: xAxis, yAxisLayer: yAxis, settings: settings)
         
         let chart = Chart(
             frame: chartFrame,
+            settings: chartSettings,
             layers: [
                 xAxis,
                 yAxis,

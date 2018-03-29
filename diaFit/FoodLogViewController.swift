@@ -31,6 +31,8 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
     @IBOutlet weak var totalFibersLabel: UILabel!
     @IBOutlet weak var caloriesBurnedLabel: UILabel!
     @IBOutlet weak var remainingLabel: UILabel!
+
+    @IBOutlet weak var totalCal: UILabel!
     
     @IBOutlet weak var percentageCarb: UILabel!//needs %%
     @IBOutlet weak var percentageFat: UILabel!//needs %
@@ -83,11 +85,12 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
         logFoodButton.titleLabel!.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 21)
         
         //    ALL labels config
-        dateLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 22)
+        dateLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 18)
         //        digits
         caloriesConsumedLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 15)
         caloriesBurnedLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 15)
         remainingLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 15)
+        totalCal.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 15)
         //        right
         percentageCarb.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 15)
         percentageFat.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 15)
@@ -463,6 +466,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
                     DispatchQueue.main.async {
                         self.caloriesBurnedLabel.text = String(Int(caloriesBurned))
                         self.remainingLabel.text = remaining
+                        self.totalCal.text = String(Int(user.getCalories()))
                         self.updateProgressBar()
                     }
                 }
@@ -487,6 +491,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
                         }
                         DispatchQueue.main.async {
                             self.remainingLabel.text = remaining
+                              self.totalCal.text = String(Int(user.getCalories()))
                             self.updateProgressBar()
                         }
                     }
@@ -506,6 +511,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
                                 DispatchQueue.main.async {
                                     self.caloriesBurnedLabel.text = String(Int(caloriesBurned))
                                     self.remainingLabel.text = remaining
+                                      self.totalCal.text = String(Int(user.getCalories()))
                                     self.updateProgressBar()
                                 }
                             }
