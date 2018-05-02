@@ -328,7 +328,9 @@ class ProfileViewController: ChildViewController {
     func getProfile(){
         let email = userDefaults.value(forKey: "email")!
         let lambdaInvoker = AWSLambdaInvoker.default()
-        let jsonObject: [String: Any] = ["operation": "read" as AnyObject, "TableName": "diaFitUsers" as AnyObject,"Key":["email": email]];
+        let jsonObject: [String: Any] = ["operation": "read" as AnyObject,
+                                         "TableName": "diaFitUsers" as AnyObject,
+                                         "Key":["email": email]];
         let task = lambdaInvoker.invokeFunction("handlerDiaFIT", jsonObject: jsonObject);
         task.continue(successBlock: { (task: AWSTask) -> Any? in
             if task.error != nil {

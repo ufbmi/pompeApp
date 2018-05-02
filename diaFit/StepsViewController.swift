@@ -21,7 +21,7 @@ class StepsViewController: UIViewController {
     var stepsArray =  [Int:(Int,Double)]()
     var stepsValues = [(Int,Int)]()
     @IBOutlet weak var onSegmentedControl: UISegmentedControl!
-    
+    let userDefaults = UserDefaults.standard
     
     var chart: Chart?
     
@@ -236,6 +236,7 @@ class StepsViewController: UIViewController {
     
     func saveToAWS(){
         //AWS
+        let email = self.userDefaults.value(forKey: "email") as! String
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -255,7 +256,7 @@ class StepsViewController: UIViewController {
         let jsonObject: [String: AnyObject] = [
             "TableName":  "userSteps" as AnyObject,
             "operation": "update" as AnyObject ,
-            "Key": ["email": "el_tona@hotmail.com"]  as AnyObject,
+            "Key": ["email": email] as AnyObject,
             "UpdateExpression": updateExpression as AnyObject,
             "ExpressionAttributeNames": expressionAttributeNames as AnyObject,
             "ExpressionAttributeValues": expressionAttributeValues as AnyObject,
