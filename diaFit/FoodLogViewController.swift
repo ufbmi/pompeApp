@@ -16,11 +16,12 @@ import CorePlot
 
 
 
-
 class FoodLogViewController: ChildViewController, UITableViewDataSource, UITableViewDelegate, PiechartDelegate {
     
       var currentDate: String = ""
     @IBOutlet var myTableView: UITableView!
+    @IBOutlet var viewPieChart: UIView!
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var caloriesConsumedLabel: UILabel! //consumed
@@ -131,10 +132,10 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
         }
         
         piechart.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(piechart)
+        viewPieChart.addSubview(piechart)
         views["piechart"] = piechart
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[piechart]-125-|", options: [], metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-170-[piechart(==170)]", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[piechart]-0-|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[piechart]-0-|", options: [], metrics: nil, views: views))
     }
     
     func setSubtitle(_ total: CGFloat, slice: Piechart.Slice) -> String {
@@ -155,7 +156,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
         messageFrame.backgroundColor = UIColor(white: 1, alpha: 1)
 
         if indicator {
-            activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+            activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
             activityIndicator.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
             activityIndicator.startAnimating()
             messageFrame.addSubview(activityIndicator)
@@ -254,10 +255,10 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
         return true
     }
     
-     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let email = self.userDefaults.value(forKey: "email") as! String
         currentDate = currentFoods[(indexPath as NSIndexPath).row].date
-        if (editingStyle == UITableViewCellEditingStyle.delete) {
+        if (editingStyle == UITableViewCell.EditingStyle.delete) {
             // handle delete (by removing the data from your AWS)
             let lambdaInvoker = AWSLambdaInvoker.default()
             let jsonObject: [String: AnyObject] = [
@@ -348,7 +349,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
                             let dateFormatter = DateFormatter()
                             dateFormatter.dateFormat = "M/dd/yyyy"
                             let dateString = String(item.0)
-                            let currentDateFromAWS = dateFormatterForAWS.date(from: dateString!)
+                            let currentDateFromAWS = dateFormatterForAWS.date(from: dateString)
                             let compareDateString = dateFormatter.string(from: currentDateFromAWS!)
                             if compareDateString == currentDate {
                                 DispatchQueue.main.async {
@@ -554,7 +555,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
         tableView.delegate = self
         tableView.dataSource = self
         refreshControl  = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(FoodLogViewController.onRefresh), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(FoodLogViewController.onRefresh), for: UIControl.Event.valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
         logFoodButton.layer.cornerRadius = 8
         let white = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -576,7 +577,7 @@ class FoodLogViewController: ChildViewController, UITableViewDataSource, UITable
         
     }
     
-    func onRefresh(){
+    @objc func onRefresh(){
         lambdaInvoker()
         self.tableView.reloadData()
         self.refreshControl.endRefreshing()

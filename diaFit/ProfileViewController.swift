@@ -73,7 +73,7 @@ class ProfileViewController: ChildViewController {
     }
     
     func underLine() {
-        let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+        let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
         let underlineAttributedString = NSAttributedString(string: "User Information", attributes: underlineAttribute)
         userLabel.attributedText = underlineAttributedString
     }
@@ -85,7 +85,7 @@ class ProfileViewController: ChildViewController {
             ], initialSelection: [9], doneBlock: {
                 picker, values, indexes in
                 let arrayRows = indexes as! NSArray
-                self.onEmploymentStatus.setTitle(arrayRows[0] as? String, for: UIControlState())
+                self.onEmploymentStatus.setTitle(arrayRows[0] as? String, for: UIControl.State())
                 
                 
                 return
@@ -98,7 +98,7 @@ class ProfileViewController: ChildViewController {
             ], initialSelection: [5], doneBlock: {
                 picker, values, indexes in
                 let arrayRows = indexes as! NSArray
-                self.onMaritalStatus.setTitle(arrayRows[0] as? String, for: UIControlState())
+                self.onMaritalStatus.setTitle(arrayRows[0] as? String, for: UIControl.State())
                 
                 
                 return
@@ -113,7 +113,7 @@ class ProfileViewController: ChildViewController {
             ], initialSelection: [3], doneBlock: {
                 picker, values, indexes in
                 let arrayRows = indexes as! NSArray
-                self.onFamilyHistory.setTitle(arrayRows[0] as? String, for: UIControlState())
+                self.onFamilyHistory.setTitle(arrayRows[0] as? String, for: UIControl.State())
                 
                 
                 return
@@ -126,7 +126,7 @@ class ProfileViewController: ChildViewController {
             ], initialSelection: [11], doneBlock: {
                 picker, values, indexes in
                 let arrayRows = indexes as! NSArray
-                self.onEducationStatus.setTitle(arrayRows[0] as? String, for: UIControlState())
+                self.onEducationStatus.setTitle(arrayRows[0] as? String, for: UIControl.State())
                 return
             }, cancel: { ActionMultipleStringCancelBlock in return }, origin: onEducationStatus)
         
@@ -139,7 +139,7 @@ class ProfileViewController: ChildViewController {
             ], initialSelection: [6], doneBlock: {
                 picker, values, indexes in
                 let arrayRows = indexes as! NSArray
-                self.raceButton.setTitle(arrayRows[0] as? String, for: UIControlState())
+                self.raceButton.setTitle(arrayRows[0] as? String, for: UIControl.State())
                 return
             }, cancel: { ActionMultipleStringCancelBlock in return }, origin: raceButton)
     }
@@ -150,7 +150,7 @@ class ProfileViewController: ChildViewController {
             ], initialSelection: [2], doneBlock: {
                 picker, values, indexes in
                 let arrayRows = indexes as! NSArray
-                self.onGender.setTitle(arrayRows[0] as? String, for: UIControlState())
+                self.onGender.setTitle(arrayRows[0] as? String, for: UIControl.State())
                 return
             }, cancel: { ActionMultipleStringCancelBlock in return }, origin: onGender)
     }
@@ -174,7 +174,7 @@ class ProfileViewController: ChildViewController {
             ], initialSelection: [25], doneBlock: {
                 picker, values, indexes in
                 let arrayRows = indexes as! NSArray
-                self.onHeight.setTitle(arrayRows[0] as? String, for: UIControlState())
+                self.onHeight.setTitle(arrayRows[0] as? String, for: UIControl.State())
                 return
             }, cancel: { ActionMultipleStringCancelBlock in return }, origin: onHeight)
         
@@ -192,7 +192,7 @@ class ProfileViewController: ChildViewController {
                     self.metric = false;
                     let arrayRows = indexes as! NSArray
                     let result = arrayRows[0]
-                    self.onWeight.setTitle((result as AnyObject).stringValue, for: UIControlState())
+                    self.onWeight.setTitle((result as AnyObject).stringValue, for: UIControl.State())
                     return
                 }, cancel: { ActionMultipleStringCancelBlock in return }, origin: self.onWeight)
         })
@@ -204,7 +204,7 @@ class ProfileViewController: ChildViewController {
                     self.metric = true;
                     let arrayRows = indexes as! NSArray
                     let result = arrayRows[0]
-                    self.onWeight.setTitle((result as AnyObject).stringValue, for: UIControlState())
+                    self.onWeight.setTitle((result as AnyObject).stringValue, for: UIControl.State())
                     return
                 }, cancel: { ActionMultipleStringCancelBlock in return }, origin: self.onWeight)
         })
@@ -222,7 +222,7 @@ class ProfileViewController: ChildViewController {
                 picker, values, indexes in
                 let arrayRows = indexes as! NSArray
                 let result = arrayRows[0]
-                self.onAge.setTitle((result as AnyObject).stringValue, for: UIControlState())
+                self.onAge.setTitle((result as AnyObject).stringValue, for: UIControl.State())
                 return
             }, cancel: { ActionMultipleStringCancelBlock in return }, origin: onAge)
     }
@@ -321,19 +321,19 @@ class ProfileViewController: ChildViewController {
                             self.deviceManager.authorizeHealthKit(){
                                 (result: Bool) in
                                 if(result){ DispatchQueue.main.async {
-                                    self.onGender.setTitle(self.deviceManager.healthKitGetGender(), for: UIControlState.normal)
-                                    self.onAge.setTitle(self.deviceManager.healthKitGetAge(), for: UIControlState.normal)
+                                    self.onGender.setTitle(self.deviceManager.healthKitGetGender(), for: UIControl.State.normal)
+                                    self.onAge.setTitle(self.deviceManager.healthKitGetAge(), for: UIControl.State.normal)
                                     DispatchQueue.main.async {
                                         self.deviceManager.healthKitGetWeight() {
                                             (result:String) in
                                             
-                                            self.onWeight.setTitle(result, for: UIControlState.normal)
+                                            self.onWeight.setTitle(result, for: UIControl.State.normal)
                                         }
                                     }
                                     DispatchQueue.main.async {
                                         self.deviceManager.healthKitGetHeight(){
                                             (result:String) in
-                                            self.onHeight.setTitle(result, for: UIControlState.normal)
+                                            self.onHeight.setTitle(result, for: UIControl.State.normal)
                                         }
                                     }
                                     }
@@ -345,10 +345,10 @@ class ProfileViewController: ChildViewController {
                                 print("RESULT \(result)")
                                 if(result){
                                     DispatchQueue.main.async {
-                                        self.onGender.setTitle(self.deviceManager.getFitBitGender(), for: UIControlState.normal)
-                                        self.onAge.setTitle(self.deviceManager.getFitBitAge(), for: UIControlState.normal)
-                                        self.onHeight.setTitle(self.deviceManager.getFitBitHeight(), for: UIControlState.normal)
-                                        self.onWeight.setTitle(self.deviceManager.getFitBitWeight(), for: UIControlState.normal)
+                                        self.onGender.setTitle(self.deviceManager.getFitBitGender(), for: UIControl.State.normal)
+                                        self.onAge.setTitle(self.deviceManager.getFitBitAge(), for: UIControl.State.normal)
+                                        self.onHeight.setTitle(self.deviceManager.getFitBitHeight(), for: UIControl.State.normal)
+                                        self.onWeight.setTitle(self.deviceManager.getFitBitWeight(), for: UIControl.State.normal)
                                         self.defaults.synchronize()
                                         
                                     }
@@ -359,15 +359,15 @@ class ProfileViewController: ChildViewController {
                         }
                     } else {
                         DispatchQueue.main.async {
-                            self.onAge.setTitle(listofattributes["age"] as? String, for: UIControlState.normal)
-                            self.onWeight.setTitle(listofattributes["weight"] as? String, for: UIControlState.normal)
-                            self.onGender.setTitle(listofattributes["gender"] as? String, for:UIControlState.normal)
-                            self.onHeight.setTitle(listofattributes["height"] as? String, for: UIControlState.normal)
-                            self.raceButton.setTitle(listofattributes["race"] as? String, for: UIControlState.normal)
-                             self.onEducationStatus.setTitle(listofattributes["education"] as? String, for: UIControlState.normal)
-                            self.onEmploymentStatus.setTitle(listofattributes["employment"] as? String, for: UIControlState.normal)
-                            self.onMaritalStatus.setTitle(listofattributes["marital"] as? String, for: UIControlState.normal)
-                            self.onFamilyHistory.setTitle(listofattributes["familyHistory"] as? String, for: UIControlState.normal)
+                            self.onAge.setTitle(listofattributes["age"] as? String, for: UIControl.State.normal)
+                            self.onWeight.setTitle(listofattributes["weight"] as? String, for: UIControl.State.normal)
+                            self.onGender.setTitle(listofattributes["gender"] as? String, for:UIControl.State.normal)
+                            self.onHeight.setTitle(listofattributes["height"] as? String, for: UIControl.State.normal)
+                            self.raceButton.setTitle(listofattributes["race"] as? String, for: UIControl.State.normal)
+                            self.onEducationStatus.setTitle(listofattributes["education"] as? String, for: UIControl.State.normal)
+                            self.onEmploymentStatus.setTitle(listofattributes["employment"] as? String, for: UIControl.State.normal)
+                            self.onMaritalStatus.setTitle(listofattributes["marital"] as? String, for: UIControl.State.normal)
+                            self.onFamilyHistory.setTitle(listofattributes["familyHistory"] as? String, for: UIControl.State.normal)
                             if let metric = listofattributes["metric"] {
                                 self.metric = (metric as? Bool)!
                             }

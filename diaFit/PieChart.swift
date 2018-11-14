@@ -100,14 +100,14 @@ open class Piechart: UIControl {
         
         titleLabel = UILabel()
         titleLabel.text = title
-        titleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(titleLabel)
         
         subtitleLabel = UILabel()
         subtitleLabel.text = subtitle
-        subtitleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
+        subtitleLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.caption1)
         subtitleLabel.textColor = UIColor.gray
         subtitleLabel.textAlignment = .center
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -115,7 +115,7 @@ open class Piechart: UIControl {
         
         infoLabel = UILabel()
         infoLabel.text = subtitle
-        infoLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
+        infoLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.caption1)
         infoLabel.textColor = UIColor.gray
         infoLabel.textAlignment = .center
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -176,7 +176,7 @@ open class Piechart: UIControl {
         
     }
     
-    func click() {
+    @objc func click() {
         activeSlice += 1
         if activeSlice >= slices.count {
             activeSlice = 0

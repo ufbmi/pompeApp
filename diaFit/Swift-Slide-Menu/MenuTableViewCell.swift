@@ -13,7 +13,7 @@ class MenuTableViewCell: UITableViewCell {
     var img = UIImageView()
     var label = UILabel()
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         initViews()
     }
@@ -50,17 +50,17 @@ class MenuTableViewCell: UITableViewCell {
         img.translatesAutoresizingMaskIntoConstraints = false
         
         //Vertical Constraints
-        let verticalConstraintImg = NSLayoutConstraint(item: img, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
-        let verticalConstraintLabel = NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
+        let verticalConstraintImg = NSLayoutConstraint(item: img, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.contentView, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 0)
+        let verticalConstraintLabel = NSLayoutConstraint(item: label, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.contentView, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 0)
         
         //Height and Width Constraints
-        let widthConstraint = NSLayoutConstraint(item: img, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.height, multiplier: 0.4, constant: 0)
-        let heightConstraint = NSLayoutConstraint(item: img, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.height, multiplier: 0.4, constant: 0)
+        let widthConstraint = NSLayoutConstraint(item: img, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.contentView, attribute: NSLayoutConstraint.Attribute.height, multiplier: 0.4, constant: 0)
+        let heightConstraint = NSLayoutConstraint(item: img, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.contentView, attribute: NSLayoutConstraint.Attribute.height, multiplier: 0.4, constant: 0)
         
         //Visual Constraints
         let views = Dictionary(dictionaryLiteral: ("image",img),("label",label))
         
-        let imageLabelConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[image]-15-[label]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let imageLabelConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[image]-15-[label]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views)
         
         self.contentView.addConstraints(imageLabelConstraints)
         self.contentView.addConstraint(widthConstraint)

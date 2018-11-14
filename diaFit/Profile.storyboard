@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q2S-4U-ZNX">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="850"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="786"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HMX-vd-fc9">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="850"/>
@@ -329,10 +329,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="HMX-vd-fc9" firstAttribute="top" secondItem="Q2S-4U-ZNX" secondAttribute="top" id="Byw-r3-HWq"/>
                                     <constraint firstItem="HMX-vd-fc9" firstAttribute="leading" secondItem="Q2S-4U-ZNX" secondAttribute="leading" id="GPa-bp-u0o"/>
                                     <constraint firstAttribute="bottom" secondItem="HMX-vd-fc9" secondAttribute="bottom" id="QDY-q0-rdn"/>
                                     <constraint firstAttribute="trailing" secondItem="HMX-vd-fc9" secondAttribute="trailing" id="S8p-Ps-kZA"/>
-                                    <constraint firstItem="HMX-vd-fc9" firstAttribute="top" secondItem="Q2S-4U-ZNX" secondAttribute="top" id="mxS-CH-mWt"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -341,11 +341,12 @@
                             <constraint firstItem="q3A-ru-fRL" firstAttribute="top" secondItem="Q2S-4U-ZNX" secondAttribute="bottom" id="LYo-EK-ZCH"/>
                             <constraint firstItem="HMX-vd-fc9" firstAttribute="width" secondItem="vr0-RY-fTJ" secondAttribute="width" id="Pio-mS-NEc"/>
                             <constraint firstItem="Q2S-4U-ZNX" firstAttribute="leading" secondItem="vr0-RY-fTJ" secondAttribute="leading" id="cvh-j5-LYs"/>
-                            <constraint firstItem="Q2S-4U-ZNX" firstAttribute="top" secondItem="vr0-RY-fTJ" secondAttribute="top" id="pw2-CE-9Bj"/>
                             <constraint firstAttribute="trailing" secondItem="Q2S-4U-ZNX" secondAttribute="trailing" id="r9Z-gp-7Cp"/>
+                            <constraint firstItem="Q2S-4U-ZNX" firstAttribute="top" secondItem="c41-ph-y33" secondAttribute="bottom" id="vNr-c4-mtc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Account" id="vmS-dB-Vy8"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="850"/>
                     <connections>
@@ -363,7 +364,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G6U-Cv-NSS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1651" y="-664"/>
+            <point key="canvasLocation" x="2641.5999999999999" y="-597.30134932533736"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8QR-q2-0Zy">
@@ -371,7 +372,7 @@
                 <navigationController storyboardIdentifier="profileNav" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GVT-Ae-UZ6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sz6-2V-cbD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -381,15 +382,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5na-Eu-lwO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1090" y="-664"/>
+            <point key="canvasLocation" x="1744" y="-597.30134932533736"/>
         </scene>
     </scenes>
     <resources>
         <image name="iphone6_background" width="750" height="1334"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
-    </simulatedMetricsContainer>
 </document>

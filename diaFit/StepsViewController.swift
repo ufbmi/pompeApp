@@ -159,71 +159,73 @@ class StepsViewController: UIViewController {
         }
     }
     
+    //Pulkit Rohilla
+
     func displayChart() {
-        let screenSize: CGRect = UIScreen.main.bounds
-        let screenWidth = screenSize.width
-        let screenHeight = screenSize.height
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM"
-        let currentMonth = dateFormatter.string(from: Date())
-        let sortedArray = self.stepsArray.sorted(by: { $0.0 < $1.0 })
-        let chartPoints = sortedArray.map{ChartPoint(x: MyMultiLabelAxisValue(position: -$0.0, label: $0.1.0 ), y: ChartAxisValueDouble($0.1.1))}
-        let labelSettings   = ChartLabelSettings(font: UIFont.systemFont(ofSize: 10))
-        let allChartPoints = chartPoints
-        let xValues: [ChartAxisValue] = (NSOrderedSet(array: allChartPoints).array as! [ChartPoint]).map{$0.x}
-        
-        
-        let yValues = ChartAxisValuesGenerator.generateYAxisValuesWithChartPoints(allChartPoints, minSegmentCount: 5, maxSegmentCount: 20, multiple: 2, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: labelSettings)}, addPaddingSegmentIfEdge: false)
-        let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: currentMonth, settings: labelSettings))
-        let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Steps2", settings: labelSettings.defaultVertical()))
-        let chartFrame = CGRect(x: 10, y: 100, width: screenWidth , height: screenHeight * 0.80)
-        let chartSettings = ChartSettings()
-        chartSettings.leading = 10
-        chartSettings.top = 10
-        chartSettings.trailing = 10
-        chartSettings.bottom = 10
-        chartSettings.labelsToAxisSpacingX = 5
-        chartSettings.labelsToAxisSpacingY = 5
-        chartSettings.axisTitleLabelsToLabelsSpacing = 4
-        chartSettings.axisStrokeWidth = 0.2
-        chartSettings.spacingBetweenAxesX = 8
-        chartSettings.spacingBetweenAxesY = 8
-        chartSettings.trailing = 20
-        
-        let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
-        let (xAxis, yAxis, innerFrame) = (coordsSpace.xAxis, coordsSpace.yAxis, coordsSpace.chartInnerFrame)
-        let c1 = UIColor(red: 0.1, green: 0.1, blue: 0.9, alpha: 0.4)
-        let chartPointsLayer = ChartPointsAreaLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, chartPoints: chartPoints, areaColor: c1, animDuration: 2, animDelay: 0, addContainerPoints: true)
-        let lineModel = ChartLineModel( chartPoints: chartPoints, lineColor: UIColor.black, animDuration: 1, animDelay: 0)
-        let chartPointsLineLayer = ChartPointsLineLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, lineModels: [lineModel])
-        
-        let circleViewGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsLayer, chart: Chart) -> UIView? in
-            let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 11)
-            circleView.animDuration = 1.5
-            circleView.fillColor = UIColor.white
-            circleView.borderWidth = 5
-            circleView.borderColor = UIColor.blue
-            return circleView
-        }
-        
-        let itemsDelay: Float = 0.08
-        let chartPointsCircleLayer = ChartPointsViewsLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, chartPoints: chartPoints, viewGenerator: circleViewGenerator, displayDelay: 0.9, delayBetweenItems: itemsDelay)
-        let settings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.black, linesWidth: 0.1)
-        let guidelinesLayer = ChartGuideLinesDottedLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, settings: settings)
-        
-        let chart = Chart(
-            frame: chartFrame,
-            layers: [
-                xAxis,
-                yAxis,
-                guidelinesLayer,
-                chartPointsLineLayer,
-                chartPointsCircleLayer,
-                chartPointsLayer
-            ]
-        )
-        self.view.addSubview(chart.view)
-        self.chart = chart
+//        let screenSize: CGRect = UIScreen.main.bounds
+//        let screenWidth = screenSize.width
+//        let screenHeight = screenSize.height
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "MMMM"
+//        let currentMonth = dateFormatter.string(from: Date())
+//        let sortedArray = self.stepsArray.sorted(by: { $0.0 < $1.0 })
+//        let chartPoints = sortedArray.map{ChartPoint(x: MyMultiLabelAxisValue(position: -$0.0, label: $0.1.0 ), y: ChartAxisValueDouble($0.1.1))}
+//        let labelSettings   = ChartLabelSettings(font: UIFont.systemFont(ofSize: 10))
+//        let allChartPoints = chartPoints
+//        let xValues: [ChartAxisValue] = (NSOrderedSet(array: allChartPoints).array as! [ChartPoint]).map{$0.x}
+//
+//
+//        let yValues = ChartAxisValuesGenerator.generateYAxisValuesWithChartPoints(allChartPoints, minSegmentCount: 5, maxSegmentCount: 20, multiple: 2, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: labelSettings)}, addPaddingSegmentIfEdge: false)
+//        let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: currentMonth, settings: labelSettings))
+//        let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Steps2", settings: labelSettings.defaultVertical()))
+//        let chartFrame = CGRect(x: 10, y: 100, width: screenWidth , height: screenHeight * 0.80)
+//        var chartSettings = ChartSettings()
+//        chartSettings.leading = 10
+//        chartSettings.top = 10
+//        chartSettings.trailing = 10
+//        chartSettings.bottom = 10
+//        chartSettings.labelsToAxisSpacingX = 5
+//        chartSettings.labelsToAxisSpacingY = 5
+//        chartSettings.axisTitleLabelsToLabelsSpacing = 4
+//        chartSettings.axisStrokeWidth = 0.2
+//        chartSettings.spacingBetweenAxesX = 8
+//        chartSettings.spacingBetweenAxesY = 8
+//        chartSettings.trailing = 20
+//
+//        let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
+//        let (xAxis, yAxis, innerFrame) = (coordsSpace.xAxis, coordsSpace.yAxis, coordsSpace.chartInnerFrame)
+//        let c1 = UIColor(red: 0.1, green: 0.1, blue: 0.9, alpha: 0.4)
+//        let chartPointsLayer = ChartPointsAreaLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, chartPoints: chartPoints, areaColor: c1, animDuration: 2, animDelay: 0, addContainerPoints: true)
+//        let lineModel = ChartLineModel( chartPoints: chartPoints, lineColor: UIColor.black, animDuration: 1, animDelay: 0)
+//        let chartPointsLineLayer = ChartPointsLineLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, lineModels: [lineModel])
+//
+//        let circleViewGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsLayer, chart: Chart) -> UIView? in
+//            let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 11)
+//            circleView.animDuration = 1.5
+//            circleView.fillColor = UIColor.white
+//            circleView.borderWidth = 5
+//            circleView.borderColor = UIColor.blue
+//            return circleView
+//        }
+//
+//        let itemsDelay: Float = 0.08
+//        let chartPointsCircleLayer = ChartPointsViewsLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, chartPoints: chartPoints, viewGenerator: circleViewGenerator, displayDelay: 0.9, delayBetweenItems: itemsDelay)
+//        let settings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.black, linesWidth: 0.1)
+//        let guidelinesLayer = ChartGuideLinesDottedLayer(xAxis: xAxis, yAxis: yAxis, innerFrame: innerFrame, settings: settings)
+//
+//        let chart = Chart(
+//            frame: chartFrame,
+//            layers: [
+//                xAxis,
+//                yAxis,
+//                guidelinesLayer,
+//                chartPointsLineLayer,
+//                chartPointsCircleLayer,
+//                chartPointsLayer
+//            ]
+//        )
+//        self.view.addSubview(chart.view)
+//        self.chart = chart
     }
 
 

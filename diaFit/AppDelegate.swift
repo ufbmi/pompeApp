@@ -11,7 +11,6 @@ import AWSCore
 import OAuthSwift
 import AWSSNS
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     let userDefaults = UserDefaults.standard
@@ -20,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let SNSPlatformApplicationArn = "arn:aws:sns:us-east-1:868559804713:app/APNS_SANDBOX/diaFitApplication"
     
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let credentialsProvider = AWSCognitoCredentialsProvider(
             regionType: AWSRegionType.usEast1,
@@ -57,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
         if url.host == "oauth-callback" {
             OAuthSwift.handle(url:url)
         }

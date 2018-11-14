@@ -76,19 +76,19 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBAction func newHere(_ sender: AnyObject) {
         if (!registerSelected) {
             registerSelected = true;
-            signInButton.setTitle("Sign up", for: UIControlState())
-            newUserButton.setTitle("I am not new", for: UIControlState())
+            signInButton.setTitle("Sign up", for: UIControl.State())
+            newUserButton.setTitle("I am not new", for: UIControl.State())
             passConfTextField.isHidden = false;
         }
         else {
             registerSelected = false;
-            signInButton.setTitle("Sign in", for: UIControlState())
-            newUserButton.setTitle("Register me.", for: UIControlState())
+            signInButton.setTitle("Sign in", for: UIControl.State())
+            newUserButton.setTitle("Register me.", for: UIControl.State())
             passConfTextField.isHidden = true;
         }
     }
     
-    func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
@@ -239,8 +239,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                     DispatchQueue.main.async {
                         self.present(created, animated: true, completion: nil);
                         self.registerSelected = false;
-                        self.signInButton.setTitle("Sign in", for: UIControlState.normal)
-                        self.newUserButton.setTitle("Register me.", for: UIControlState.normal)
+                        self.signInButton.setTitle("Sign in", for: UIControl.State.normal)
+                        self.newUserButton.setTitle("Register me.", for: UIControl.State.normal)
                         self.passConfTextField.isHidden = true;
                     }
                 }

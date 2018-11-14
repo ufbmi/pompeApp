@@ -61,12 +61,15 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         
         let navigationBarHeight: CGFloat = self.navigationController!.navigationBar.frame.height
         let btnShowMenu = ZFRippleButton()
-        btnShowMenu.alpha = 0
-        btnShowMenu.setImage(self.defaultMenuImage(), for: UIControlState())
-        btnShowMenu.setImage(self.defaultMenuImage(), for: UIControlState.highlighted)
+        btnShowMenu.alpha = 1
+        btnShowMenu.setImage(self.defaultMenuImage(), for: UIControl.State())
+        btnShowMenu.setImage(self.defaultMenuImage(), for: UIControl.State.highlighted)
         btnShowMenu.frame = CGRect(x: 0, y: 0, width: navigationBarHeight, height: navigationBarHeight)
-        btnShowMenu.addTarget(self, action: #selector(BaseViewController.onSlideMenuButtonPressed(_:)), for: UIControlEvents.touchUpInside)
+        btnShowMenu.addTarget(self, action: #selector(BaseViewController.onSlideMenuButtonPressed(_:)), for: UIControl.Event.touchUpInside)
         let customBarItem = UIBarButtonItem(customView: btnShowMenu)
+//        let barbtn = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.rewind
+//            , target: nil
+//            , action: nil)
         self.navigationItem.leftBarButtonItem = customBarItem;
     }
     
@@ -88,7 +91,7 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         return defaultMenuImage;
     }
     
-    func onSlideMenuButtonPressed(_ sender : UIButton){
+    @objc func onSlideMenuButtonPressed(_ sender : UIButton){
         if (sender.tag == 10)
         {
             // Menu is already displayed, no need to display it twice, otherwise we hide the menu
@@ -109,7 +112,7 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         objMenu.btnMenu = sender
         objMenu.delegate = self
         self.view.addSubview(objMenu.view)
-        self.addChildViewController(objMenu)
+        self.addChild(objMenu)
         
         sender.isEnabled = true
         
@@ -121,19 +124,19 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
     func transitionBetweenTwoViews(_ subViewNew: UIViewController){
         
         //Add new view
-        addChildViewController(subViewNew)
+        addChild(subViewNew)
         subViewNew.view.frame = (self.parent?.view.frame)!
         view.addSubview(subViewNew.view)
-        subViewNew.didMove(toParentViewController: self)
+        subViewNew.didMove(toParent: self)
         
         //Remove old view
-        if self.childViewControllers.count > 1 {
+        if self.children.count > 1 {
             
             //Remove old view
-            let oldViewController: UIViewController = self.childViewControllers.first!
-            oldViewController.willMove(toParentViewController: nil)
+            let oldViewController: UIViewController = self.children.first!
+            oldViewController.willMove(toParent: nil)
             oldViewController.view.removeFromSuperview()
-            oldViewController.removeFromParentViewController()
+            oldViewController.removeFromParent()
         }
     }
     
@@ -142,11 +145,11 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         let containerViews = UIView()
         containerViews.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(containerViews)
-        self.view.sendSubview(toBack: containerViews)
+        self.view.sendSubviewToBack(containerViews)
         
         //Height and Width Constraints
-        let widthConstraint = NSLayoutConstraint(item: containerViews, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.width, multiplier: 1, constant: 0)
-        let heightConstraint = NSLayoutConstraint(item: containerViews, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 0)
+        let widthConstraint = NSLayoutConstraint(item: containerViews, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.width, multiplier: 1, constant: 0)
+        let heightConstraint = NSLayoutConstraint(item: containerViews, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.height, multiplier: 1, constant: 0)
         
         self.view.addConstraint(widthConstraint)
         self.view.addConstraint(heightConstraint)
