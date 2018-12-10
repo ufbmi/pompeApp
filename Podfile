@@ -5,7 +5,7 @@ platform :ios, '10.0'
 use_frameworks!
 source 'https://github.com/CocoaPods/Specs.git'
 
-target 'diaFit' do
+target 'Pompe' do
 
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 pod 'AFNetworking', '~> 2.5'
